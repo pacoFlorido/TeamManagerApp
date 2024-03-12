@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TeamManager</string>
+    <string name="title_home">Home</string>
+    <string name="title_eventos">Eventos</string>
+    <string name="title_equipo">Equipo</string>
+    <string name="jugadores">Jugadores</string>
+    <string name="entrenadores">Entrenadores</string>
+</resources>
