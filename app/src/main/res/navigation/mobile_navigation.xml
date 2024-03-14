@@ -22,4 +22,14 @@
         android:name="net.pacofloridoquesada.teammanager.ui.eventos.EventosFragment"
         android:label="@string/title_eventos"
         tools:layout="@layout/fragment_eventos" />
+    <fragment
+        android:id="@+id/navigation_clasificacion"
+        android:name="net.pacofloridoquesada.teammanager.ui.clasificacion.ClasificacionFragment"
+        android:label="fragment_clasificacion"
+        tools:layout="@layout/fragment_clasificacion" />
+    <fragment
+        android:id="@+id/navigation_perfil"
+        android:name="net.pacofloridoquesada.teammanager.ui.perfil.PerfilFragment"
+        android:label="fragment_perfil"
+        tools:layout="@layout/fragment_perfil" />
 </navigation>

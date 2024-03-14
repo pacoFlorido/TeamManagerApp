@@ -6,4 +6,8 @@
     <string name="jugadores">Jugadores</string>
     <string name="entrenadores">Entrenadores</string>
     <string name="foto_equipo">Foto equipo</string>
+    <string name="title_perfil">Perfil</string>
+    <string name="title_clasificacion">Clasificación</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="invitar">Invitar Compañeros</string>
 </resources>

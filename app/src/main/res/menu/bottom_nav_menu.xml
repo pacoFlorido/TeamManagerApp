@@ -7,6 +7,11 @@
         android:title="@string/title_equipo" />
 
     <item
+        android:id="@+id/navigation_clasificacion"
+        android:icon="@drawable/ic_clasificacion"
+        android:title="@string/title_clasificacion" />
+
+    <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_home_black_24dp"
         android:title="@string/title_home" />
@@ -16,4 +21,8 @@
         android:icon="@drawable/ic_eventos"
         android:title="@string/title_eventos" />
 
+    <item
+        android:id="@+id/navigation_perfil"
+        android:icon="@drawable/ic_perfil"
+        android:title="@string/title_perfil" />
 </menu>
