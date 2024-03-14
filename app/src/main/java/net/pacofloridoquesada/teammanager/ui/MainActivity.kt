@@ -20,6 +20,10 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // Elimina ActionBar de la parte superior de la screen.
+        // Siempre hay se tiene que poner después de sentContentView()
+        supportActionBar!!.hide()
+
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
@@ -28,6 +32,9 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home, R.id.navigation_equipo, R.id.navigation_eventos
             )
         )
+
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
     }

@@ -5,4 +5,5 @@
     <string name="title_equipo">Equipo</string>
     <string name="jugadores">Jugadores</string>
     <string name="entrenadores">Entrenadores</string>
+    <string name="foto_equipo">Foto equipo</string>
 </resources>
