@@ -1,15 +1,135 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beis_fondo"
     tools:context=".ui.clasificacion.ClasificacionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvClasificacionBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/title_clasificacion" />
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" >
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clClasificacionBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/azul_principal">
+
+            <TextView
+                android:id="@+id/tvClasificacionTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/title_clasificacion"
+                android:textColor="@color/beis_fondo"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <RadioGroup
+        android:id="@+id/rgClasificacionFiltro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:checkedButton="@id/rbGoles"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvClasificacionBar">
+
+        <RadioButton
+            android:id="@+id/rbGoles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rb_pers"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/goles"
+            android:textAlignment="center"
+            android:textColor="@drawable/txt_rb"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbAsistencias"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rb_pers"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/asistencias"
+            android:textAlignment="center"
+            android:textColor="@drawable/txt_rb"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbPartidos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rb_pers"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/partidos"
+            android:textAlignment="center"
+            android:textColor="@drawable/txt_rb"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbRojas"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rb_pers"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/rojas"
+            android:textAlignment="center"
+            android:textColor="@drawable/txt_rb"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbAmarillas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rb_pers"
+            android:button="@android:color/transparent"
+            android:padding="10dp"
+            android:text="@string/amarillas"
+            android:textAlignment="center"
+            android:textColor="@drawable/txt_rb"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <View
+        android:id="@+id/divider6"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="8dp"
+        android:background="@color/gris_complementario"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rgClasificacionFiltro" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvClasificacion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider6"
+        tools:listitem="@layout/item_jugador" />
 </androidx.constraintlayout.widget.ConstraintLayout>

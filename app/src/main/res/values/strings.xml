@@ -10,4 +10,9 @@
     <string name="title_clasificacion">Clasificación</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invitar">Invitar Compañeros</string>
+    <string name="goles">Goles</string>
+    <string name="asistencias">Asistencias</string>
+    <string name="partidos">Partidos</string>
+    <string name="rojas">Rojas</string>
+    <string name="amarillas">Amarillas</string>
 </resources>

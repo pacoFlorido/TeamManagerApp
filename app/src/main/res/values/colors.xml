@@ -11,4 +11,5 @@
     <color name="azul_principal">#365B6D</color>
     <color name="beis_fondo">#F2F1EC</color>
     <color name="gris_complementario">#b9bcc6</color>
+    <color name="azul_gris_azulado_complementario">#DBDEE9</color>
 </resources>
