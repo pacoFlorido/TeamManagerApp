@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_home,
                 R.id.navigation_equipo,
                 R.id.navigation_eventos,
-                R.id.navigation_clasificacion
+                R.id.navigation_clasificacion,
+                R.id.navigation_perfil
             )
         )
 

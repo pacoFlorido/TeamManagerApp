@@ -18,6 +18,10 @@ class PerfilFragment : Fragment() {
     ): View? {
 
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
+
+        binding.ivPerfilEditar.setOnClickListener {
+
+        }
         val root: View = binding.root
         return root
     }
