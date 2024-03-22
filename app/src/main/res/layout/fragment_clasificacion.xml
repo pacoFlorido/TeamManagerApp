@@ -39,14 +39,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/ivClasificacionIcon"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_marginStart="16dp"
                 android:src="@drawable/ic_clasificacion_white"
                 app:layout_constraintBottom_toBottomOf="@+id/tvClasificacionTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tvClasificacionTitle" />
+                app:layout_constraintTop_toTopOf="@+id/tvClasificacionTitle"
+                android:contentDescription="@string/icono_home" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -15,4 +15,7 @@
     <string name="partidos">Partidos</string>
     <string name="rojas">Rojas</string>
     <string name="amarillas">Amarillas</string>
+    <string name="icono_home">Icono Home</string>
+    <string name="opciones_equipo">Opciones Equipo</string>
+    <string name="pr_ximos_eventos">Próximos Eventos</string>
 </resources>
