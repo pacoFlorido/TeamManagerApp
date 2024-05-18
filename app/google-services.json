@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "186168848947",
+    "project_id": "teammanager-a345c",
+    "storage_bucket": "teammanager-a345c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:186168848947:android:0a3d1054bdf4867778e946",
+        "android_client_info": {
+          "package_name": "net.pacofloridoquesada.teammanager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjKH5uMl5-V_tzwFuWqGQKKkmpM16OXTI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

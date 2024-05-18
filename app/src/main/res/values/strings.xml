@@ -18,4 +18,6 @@
     <string name="icono_home">Icono Home</string>
     <string name="opciones_equipo">Opciones Equipo</string>
     <string name="pr_ximos_eventos">Próximos Eventos</string>
+    <string name="registrarse">Registrarse</string>
+    <string name="iniciar_sesion">Iniciar Sesión</string>
 </resources>
