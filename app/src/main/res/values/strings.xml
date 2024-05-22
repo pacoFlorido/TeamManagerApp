@@ -8,7 +8,6 @@
     <string name="foto_equipo">Foto equipo</string>
     <string name="title_perfil">Perfil</string>
     <string name="title_clasificacion">Clasificación</string>
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="invitar">Invitar Compañeros</string>
     <string name="goles">Goles</string>
     <string name="asistencias">Asistencias</string>
@@ -20,4 +19,13 @@
     <string name="pr_ximos_eventos">Próximos Eventos</string>
     <string name="registrarse">Registrarse</string>
     <string name="iniciar_sesion">Iniciar Sesión</string>
+    <string name="email">Email</string>
+    <string name="contrase_a">Contraseña</string>
+    <string name="teammanager">TeamManager</string>
+    <string name="registrarte_aqui">¡Registrarte aquí!</string>
+    <string name="todavia_no_tienes_una_cuenta">¿Todavía no tienes una cuenta? </string>
+    <string name="jugador">Soy un Jugador</string>
+    <string name="entrenador">Soy un Entrenador</string>
+    <string name="cual_ser_tu_rol_en_el_equipo">¿Cuál es tu Rol en el equipo?</string>
+    <string name="siguiente">Siguiente</string>
 </resources>

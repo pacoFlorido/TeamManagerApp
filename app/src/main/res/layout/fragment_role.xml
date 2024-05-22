@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_team_manager_login"
+    tools:context=".ui.register.RoleFragment">
+
+    <ImageView
+        android:id="@+id/ivSeleccionRol"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/soccer_ball"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <RadioGroup
+        android:id="@+id/rgRol"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="30dp"
+        android:checkedButton="@id/rbJugador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvMensajeRol">
+
+        <RadioButton
+            android:id="@+id/rbJugador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/rb_pers"
+            android:buttonTint="@drawable/txt_rb"
+            android:paddingVertical="12dp"
+            android:text="@string/jugador"
+            android:textAlignment="viewStart"
+            android:textColor="@drawable/txt_rb"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/rbEntrenador"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginVertical="5dp"
+            android:background="@drawable/rb_pers"
+            android:buttonTint="@drawable/txt_rb"
+            android:paddingVertical="12dp"
+            android:text="@string/entrenador"
+            android:textColor="@drawable/txt_rb"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/tvMensajeRol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/cual_ser_tu_rol_en_el_equipo"
+        android:textColor="@color/azul_principal"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="@+id/rgRol"
+        app:layout_constraintStart_toStartOf="@+id/rgRol"
+        app:layout_constraintTop_toBottomOf="@+id/ivSeleccionRol" />
+
+    <Button
+        android:id="@+id/btnSiguiente"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/bg_simple_button"
+        android:text="@string/siguiente"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

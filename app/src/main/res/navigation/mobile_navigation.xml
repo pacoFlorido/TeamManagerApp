@@ -10,7 +10,6 @@
         android:name="net.pacofloridoquesada.teammanager.ui.home.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" />
-
     <fragment
         android:id="@+id/navigation_equipo"
         android:name="net.pacofloridoquesada.teammanager.ui.equipo.EquipoFragment"

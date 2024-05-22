@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/register_nav"
+    app:startDestination="@id/registerFragment">
+
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.register.RoleFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_role" />
+    <fragment
+        android:id="@+id/userCreationFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.register.UserCreationFragment"
+        android:label="fragment_user_creation"
+        tools:layout="@layout/fragment_user_creation" />
+</navigation>
