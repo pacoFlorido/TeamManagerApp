@@ -11,8 +11,23 @@ import net.pacofloridoquesada.teammanager.databinding.FragmentRoleBinding
 class RoleFragment : Fragment() {
 
     private var _binding: FragmentRoleBinding? = null
-
     private val binding get() = _binding!!
+
+    private fun setupSiguiente() {
+        binding.btnSiguiente.setOnClickListener {
+            if (binding.rbJugador.isChecked) {
+                findNavController()
+                    .navigate(
+                        RoleFragmentDirections.toCrearUser(1)
+                    )
+            } else {
+                findNavController()
+                    .navigate(
+                        RoleFragmentDirections.toCrearUser(2)
+                    )
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,14 +39,14 @@ class RoleFragment : Fragment() {
         return root
     }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        setupSiguiente()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun siguiente() {
-        binding.btnSiguiente.setOnClickListener{
-
-        }
     }
 }
