@@ -3,6 +3,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     //Firebase
     id("com.google.gms.google-services")
+    //SafeArgs
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
