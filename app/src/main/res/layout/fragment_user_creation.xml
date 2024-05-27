@@ -61,7 +61,7 @@
         android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/etEmailCreacionUsu"
-        app:layout_constraintTop_toBottomOf="@+id/etFechaNacimiento" />
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaNacimiento" />
 
     <EditText
         android:id="@+id/etContrasenyaCrear"
@@ -94,9 +94,8 @@
         android:textColor="@color/azul_principal"
         android:textColorHint="@color/azul_principal"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/etFechaNacimiento"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/etFechaNacimiento"
+        app:layout_constraintEnd_toEndOf="@+id/btSelectFecha"
+        app:layout_constraintStart_toStartOf="@+id/tvFechaNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
     <TextView
@@ -122,7 +121,7 @@
         android:textColor="@color/azul_principal"
         android:textSize="16sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/etFechaNacimiento"
+        app:layout_constraintStart_toStartOf="@+id/tvFechaNacimiento"
         app:layout_constraintTop_toBottomOf="@+id/spPaises" />
 
     <TextView
@@ -207,23 +206,6 @@
         app:layout_constraintEnd_toEndOf="@+id/spPaises"
         app:layout_constraintTop_toTopOf="@+id/spPaises" />
 
-    <EditText
-        android:id="@+id/etFechaNacimiento"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:background="@drawable/bg_edittext"
-        android:ems="10"
-        android:hint="@string/fecha_formato"
-        android:inputType="date"
-        android:padding="12dp"
-        android:textColor="@color/azul_principal"
-        android:textColorHint="@color/azul_principal"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/spPaises"
-        app:layout_constraintStart_toStartOf="@+id/spPaises"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
     <Button
         android:id="@+id/btCrearUser"
         android:layout_width="0dp"
@@ -238,5 +220,32 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/btSelectFecha"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/bg_simple_button"
+        android:text="@string/seleccionar_fecha"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:icon="@drawable/baseline_calendar_month_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFechaNacimiento"
+        app:layout_constraintEnd_toEndOf="@+id/spPaises"
+        app:layout_constraintStart_toEndOf="@+id/tvFechaNacimiento"
+        app:layout_constraintTop_toTopOf="@+id/tvFechaNacimiento" />
+
+    <TextView
+        android:id="@+id/tvFechaNacimiento"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_edittext"
+        android:padding="12dp"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/spPaises"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -38,6 +38,7 @@
     <string name="creaci_n_de_usuario">Creación de Usuario</string>
     <string name="fecha_formato">01/01/2000</string>
     <string name="crear_usuario">Crear Usuario</string>
+    <string name="seleccionar_fecha">Seleccionar fecha</string>
     <string-array name="paises">
         <item>Afganistán</item>
         <item>Albania</item>

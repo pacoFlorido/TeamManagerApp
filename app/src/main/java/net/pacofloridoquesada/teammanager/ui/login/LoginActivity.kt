@@ -33,6 +33,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Oculto la barra de ayuda ya que no la voy a utilizar
         supportActionBar!!.hide()
+
         setupIniciarSesion()
         setupRegistro()
     }
@@ -55,7 +56,7 @@ class LoginActivity : AppCompatActivity() {
                         Log.w(TAG, "createUserWithEmail:failure", it.exception)
                         Toast.makeText(
                             baseContext,
-                            "Error iniciando sesión.",
+                            "Error en el inicio de sesión, vuelve a intentarlo.",
                             Toast.LENGTH_SHORT,
                         ).show()
                     }
@@ -72,7 +73,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun setupRegistro(){
         binding.btnRegistrarse.setOnClickListener{
-
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
