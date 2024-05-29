@@ -9,11 +9,11 @@ import retrofit2.http.POST
 
 interface TeamManagerService {
     @POST("player")
-    suspend fun createPlayer(@Body player: Player)
+    suspend fun createPlayer(@Body player: Player) : Response<Player>
 
     @POST("trainer")
-    suspend fun createTrainer(@Body trainer: Trainer)
+    suspend fun createTrainer(@Body trainer: Trainer) : Response<Trainer>
 
     @POST("team")
-    suspend fun createTrainer(@Body team: Team)
+    suspend fun createTeam(@Body team: Team) : Response<Team>
 }

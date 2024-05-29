@@ -1,4 +1,4 @@
-package net.pacofloridoquesada.teammanager.ui.clasificacion
+package net.pacofloridoquesada.teammanager.ui.main.clasificacion
 
 import android.content.Context
 import android.os.Bundle

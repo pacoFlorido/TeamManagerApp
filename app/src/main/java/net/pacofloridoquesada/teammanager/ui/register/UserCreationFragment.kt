@@ -2,56 +2,62 @@ package net.pacofloridoquesada.teammanager.ui.register
 
 import android.app.DatePickerDialog
 import android.os.Bundle
-import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentUserCreationBinding
+import net.pacofloridoquesada.teammanager.model.Player
+import net.pacofloridoquesada.teammanager.model.PlayerReport
+import net.pacofloridoquesada.teammanager.model.Trainer
+import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 import java.text.SimpleDateFormat
-import java.time.LocalDate
 import java.util.Calendar
 import java.util.Locale
-import java.util.TimeZone
 
 class UserCreationFragment : Fragment() {
 
     private var _binding: FragmentUserCreationBinding? = null
     private val binding get() = _binding!!
     val args: UserCreationFragmentArgs by navArgs()
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
+    val teamManagerViewModel: TeamManagerViewModel by activityViewModels()
 
-    private fun iniciarCreacionUsuario(){
-        binding.btCrearUser.setOnClickListener{
+    private fun iniciarCreacionUsuario() {
+        binding.btCrearUser.setOnClickListener {
             validarCampos()
         }
     }
 
-    private fun validarCampos(){
+    private fun validarCampos() {
         var message: String
         if (!binding.etNombreCompleto.text.isEmpty() &&
             !binding.tvFechaNacimiento.text.isEmpty() &&
             !binding.etEmailCreacionUsu.text.isEmpty() &&
             !binding.etContrasenyaCrear.text.isEmpty() &&
-            !binding.etRepetirContrasenya.text.isEmpty()){
+            !binding.etRepetirContrasenya.text.isEmpty()
+        ) {
             this.crearUsuarioFirebase()
         } else {
             Toast.makeText(
                 this.requireContext(),
-                "Debes rellenar todos los campos para crear tu nuevo usuario.",
+                "Debes completar todos los campos.",
                 Toast.LENGTH_SHORT,
             ).show()
         }
     }
 
-    private fun inicializarDatePicker(){
+    private fun inicializarDatePicker() {
         val calendario = Calendar.getInstance()
-        val fecha = DatePickerDialog.OnDateSetListener{datepicker, year, month, day ->
+        val fecha = DatePickerDialog.OnDateSetListener { datepicker, year, month, day ->
             calendario.set(Calendar.YEAR, year)
             calendario.set(Calendar.MONTH, month)
             calendario.set(Calendar.DAY_OF_MONTH, day)
@@ -59,7 +65,7 @@ class UserCreationFragment : Fragment() {
             this.actualizarFecha(calendario)
         }
 
-        binding.btSelectFecha.setOnClickListener{
+        binding.btSelectFecha.setOnClickListener {
             DatePickerDialog(
                 requireContext(),
                 fecha,
@@ -70,7 +76,7 @@ class UserCreationFragment : Fragment() {
         }
     }
 
-    private fun actualizarFecha (calendar: Calendar){
+    private fun actualizarFecha(calendar: Calendar) {
         val formatoFecha = "dd-MM-yyyy"
         val formatoSimple = SimpleDateFormat(formatoFecha, Locale.ENGLISH)
         binding.tvFechaNacimiento.text = formatoSimple.format(calendar.time)
@@ -80,21 +86,58 @@ class UserCreationFragment : Fragment() {
         val email = binding.etEmailCreacionUsu.text.toString()
         val contrasenya = binding.etContrasenyaCrear.text.toString()
 
-        auth.createUserWithEmailAndPassword(email, contrasenya).addOnCompleteListener{
-            if (it.isSuccessful){
-                if (args.roleSelected == 1){
+        auth.createUserWithEmailAndPassword(email, contrasenya).addOnCompleteListener {
+            if (it.isSuccessful) {
+                if (args.roleSelected == 1) {
+                    val fechaNormal = binding.tvFechaNacimiento.text.toString()
+                    val fechaBBDD = fechaNormal.substring(6, 10) + "-" +
+                            fechaNormal.substring(3, 5) + "-" +
+                            fechaNormal.substring(0, 2)
+                    Log.i("Fecha: ", fechaBBDD)
                     //Creamos Jugador
-
+                    teamManagerViewModel.addPlayer(
+                        Player(
+                            "",
+                            fechaBBDD,
+                            binding.etNombreCompleto.text.toString(),
+                            binding.spPaises.selectedItem.toString(),
+                            null,
+                            auth.currentUser?.uid.toString()
+                        )
+                    )
+                    findNavController()
+                        .navigate(UserCreationFragmentDirections.toCrearEquipo())
                 } else {
-                    //Creamos Entrenador
-
+                    val fechaNormal = binding.tvFechaNacimiento.text.toString()
+                    val fechaBBDD = fechaNormal.substring(6, 10) + "-" +
+                            fechaNormal.substring(3, 5) + "-" +
+                            fechaNormal.substring(0, 2)
+                    Log.i("Fecha: ", fechaBBDD)
+                    //Creamos Jugador
+                    teamManagerViewModel.addTrainer(
+                        Trainer(
+                            fechaBBDD,
+                            null,
+                            binding.etNombreCompleto.text.toString(),
+                            binding.spPaises.selectedItem.toString(),
+                            auth.currentUser?.uid.toString()
+                        )
+                    )
+                    findNavController()
+                        .navigate(UserCreationFragmentDirections.toCrearEquipo())
                 }
+            } else {
+                //Mostramos error al crear cuenta FireBase
             }
         }
     }
 
-    private fun inicializarSpinnerPaises(){
-        val adapter = ArrayAdapter.createFromResource(this.requireContext(), R.array.paises , R.layout.spinner_items)
+    private fun inicializarSpinnerPaises() {
+        val adapter = ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.paises,
+            R.layout.spinner_items
+        )
         adapter.setDropDownViewResource(R.layout.spinner_dropdown)
 
         binding.spPaises.adapter = adapter
@@ -106,7 +149,7 @@ class UserCreationFragment : Fragment() {
     ): View? {
         _binding = FragmentUserCreationBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        auth = FirebaseAuth.getInstance()
         return root
     }
 

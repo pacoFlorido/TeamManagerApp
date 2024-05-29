@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beis_fondo"
-    tools:context=".ui.equipo.EquipoFragment">
+    tools:context=".ui.main.equipo.EquipoFragment">
 
     <TextView
         android:id="@+id/laEntrenadores"

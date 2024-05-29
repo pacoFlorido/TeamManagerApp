@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beis_fondo"
-    tools:context=".ui.eventos.EventosFragment">
+    tools:context=".ui.main.eventos.EventosFragment">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvEventosBar"

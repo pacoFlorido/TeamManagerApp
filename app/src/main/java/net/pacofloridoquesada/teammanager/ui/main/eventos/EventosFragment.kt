@@ -1,4 +1,4 @@
-package net.pacofloridoquesada.teammanager.ui.equipo
+package net.pacofloridoquesada.teammanager.ui.main.eventos
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import net.pacofloridoquesada.teammanager.databinding.FragmentEquipoBinding
+import net.pacofloridoquesada.teammanager.databinding.FragmentEventosBinding
 
-class EquipoFragment : Fragment() {
+class EventosFragment : Fragment() {
 
-    private var _binding: FragmentEquipoBinding? = null
+    private var _binding: FragmentEventosBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
@@ -19,10 +19,10 @@ class EquipoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val equipoViewModel =
-            ViewModelProvider(this).get(EquipoViewModel::class.java)
+        val notificationsViewModel =
+            ViewModelProvider(this).get(EventosViewModel::class.java)
 
-        _binding = FragmentEquipoBinding.inflate(inflater, container, false)
+        _binding = FragmentEventosBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         return root

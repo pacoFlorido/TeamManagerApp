@@ -22,5 +22,13 @@
         <argument
             android:name="roleSelected"
             app:argType="integer" />
+        <action
+            android:id="@+id/toCrearEquipo"
+            app:destination="@id/teamCreationFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/teamCreationFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.register.TeamCreationFragment"
+        android:label="fragment_team_creation"
+        tools:layout="@layout/fragment_team_creation" />
 </navigation>
