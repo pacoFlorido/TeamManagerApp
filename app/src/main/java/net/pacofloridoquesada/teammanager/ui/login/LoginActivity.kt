@@ -10,19 +10,20 @@ import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.databinding.ActivityLoginBinding
 import net.pacofloridoquesada.teammanager.ui.MainActivity
 import net.pacofloridoquesada.teammanager.ui.register.RegisterActivity
+import net.pacofloridoquesada.teammanager.ui.teamcreate.TeamCreateActivity
 
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var auth : FirebaseAuth
+    private lateinit var auth: FirebaseAuth
 
     override fun onStart() {
         super.onStart()
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
-        if (currentUser != null){
+        if (currentUser != null) {
             finish()
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, TeamCreateActivity::class.java))
         }
     }
 
@@ -31,15 +32,16 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //Oculto la barra de ayuda ya que no la voy a utilizar
+        // Elimina ActionBar de la parte superior de la screen.
+        // Siempre se tiene que poner después de sentContentView()
         supportActionBar!!.hide()
 
         setupIniciarSesion()
         setupRegistro()
     }
 
-    private fun setupIniciarSesion(){
-        binding.btnIniciarSesion.setOnClickListener{
+    private fun setupIniciarSesion() {
+        binding.btnIniciarSesion.setOnClickListener {
 
             val email = binding.etEmail.text
             val contrasenya = binding.etContrasenya.text
@@ -47,8 +49,8 @@ class LoginActivity : AppCompatActivity() {
                 auth.signInWithEmailAndPassword(
                     email.toString(),
                     contrasenya.toString()
-                ).addOnCompleteListener{
-                    if (it.isSuccessful){
+                ).addOnCompleteListener {
+                    if (it.isSuccessful) {
                         finish()
                         startActivity(Intent(this, MainActivity::class.java))
                     } else {
@@ -71,8 +73,8 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    private fun setupRegistro(){
-        binding.btnRegistrarse.setOnClickListener{
+    private fun setupRegistro() {
+        binding.btnRegistrarse.setOnClickListener {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }

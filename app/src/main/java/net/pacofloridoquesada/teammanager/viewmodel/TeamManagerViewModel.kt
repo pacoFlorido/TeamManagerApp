@@ -11,14 +11,14 @@ import net.pacofloridoquesada.teammanager.model.Trainer
 import net.pacofloridoquesada.teammanager.network.NetworkService
 
 class TeamManagerViewModel : ViewModel() {
-    fun addPlayer(player: Player){
+    fun addPlayer(player: Player) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = NetworkService.teamManagerService.createPlayer(player)
             Log.i("Response: ", response.errorBody().toString())
         }
     }
 
-    fun addTrainer(trainer: Trainer){
+    fun addTrainer(trainer: Trainer) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = NetworkService.teamManagerService.createTrainer(trainer)
             Log.i("Response: ", response.errorBody().toString())

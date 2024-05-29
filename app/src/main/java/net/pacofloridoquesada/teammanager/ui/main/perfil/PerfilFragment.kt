@@ -17,8 +17,8 @@ class PerfilFragment : Fragment() {
     private fun setupCerrarSesion(){
         binding.btCerrarSesion.setOnClickListener{
             FirebaseAuth.getInstance().signOut()
-            requireActivity().finish()
-            requireActivity().startActivity(Intent(requireContext(),LoginActivity::class.java))
+            this.requireActivity().finish()
+            this.requireActivity().startActivity(Intent(requireContext(),LoginActivity::class.java))
         }
     }
 

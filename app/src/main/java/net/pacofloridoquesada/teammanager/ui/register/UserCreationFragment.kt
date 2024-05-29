@@ -1,6 +1,7 @@
 package net.pacofloridoquesada.teammanager.ui.register
 
 import android.app.DatePickerDialog
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -18,6 +19,8 @@ import net.pacofloridoquesada.teammanager.databinding.FragmentUserCreationBindin
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.PlayerReport
 import net.pacofloridoquesada.teammanager.model.Trainer
+import net.pacofloridoquesada.teammanager.ui.MainActivity
+import net.pacofloridoquesada.teammanager.ui.teamcreate.TeamCreateActivity
 import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -93,7 +96,6 @@ class UserCreationFragment : Fragment() {
                     val fechaBBDD = fechaNormal.substring(6, 10) + "-" +
                             fechaNormal.substring(3, 5) + "-" +
                             fechaNormal.substring(0, 2)
-                    Log.i("Fecha: ", fechaBBDD)
                     //Creamos Jugador
                     teamManagerViewModel.addPlayer(
                         Player(
@@ -105,15 +107,14 @@ class UserCreationFragment : Fragment() {
                             auth.currentUser?.uid.toString()
                         )
                     )
-                    findNavController()
-                        .navigate(UserCreationFragmentDirections.toCrearEquipo())
+                    this.requireActivity().finish()
+                    this.requireActivity().startActivity(Intent(requireContext(), TeamCreateActivity::class.java))
                 } else {
                     val fechaNormal = binding.tvFechaNacimiento.text.toString()
                     val fechaBBDD = fechaNormal.substring(6, 10) + "-" +
                             fechaNormal.substring(3, 5) + "-" +
                             fechaNormal.substring(0, 2)
-                    Log.i("Fecha: ", fechaBBDD)
-                    //Creamos Jugador
+                    //Creamos Entrenador
                     teamManagerViewModel.addTrainer(
                         Trainer(
                             fechaBBDD,
@@ -123,11 +124,11 @@ class UserCreationFragment : Fragment() {
                             auth.currentUser?.uid.toString()
                         )
                     )
-                    findNavController()
-                        .navigate(UserCreationFragmentDirections.toCrearEquipo())
+                    this.requireActivity().finish()
+                    this.requireActivity().startActivity(Intent(requireContext(), TeamCreateActivity::class.java))
                 }
             } else {
-                //Mostramos error al crear cuenta FireBase
+                //TODO: Mostrar error al crear cuenta FireBase
             }
         }
     }

@@ -15,7 +15,9 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        //Oculto la barra de ayuda ya que no la voy a utilizar
+
+        // Elimina ActionBar de la parte superior de la screen.
+        // Siempre se tiene que poner después de sentContentView()
         supportActionBar!!.hide()
     }
 }
