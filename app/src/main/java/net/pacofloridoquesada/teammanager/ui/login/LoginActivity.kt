@@ -52,7 +52,7 @@ class LoginActivity : AppCompatActivity() {
                 ).addOnCompleteListener {
                     if (it.isSuccessful) {
                         finish()
-                        startActivity(Intent(this, MainActivity::class.java))
+                        startActivity(Intent(this, TeamCreateActivity::class.java))
                     } else {
                         // Si el inicio de sesión falla, muestro un mensaje indicando el error.
                         Log.w(TAG, "createUserWithEmail:failure", it.exception)

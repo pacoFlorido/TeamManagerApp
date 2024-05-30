@@ -42,7 +42,7 @@ class RoleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupSiguiente()
+        this.setupSiguiente()
     }
 
     override fun onDestroyView() {

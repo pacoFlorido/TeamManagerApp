@@ -245,4 +245,12 @@
     <string name="no">No</string>
     <string name="cerrar_sesi_n">Cerrar Sesión</string>
     <string name="eliminar_cuenta">Eliminar Cuenta</string>
+    <string name="quieres_unirte_a_un_equipo_existente_o_crear_uno_nuevo">¿Quieres unirte a un equipo existente o crear uno nuevo?</string>
+    <string name="bienvenido">¡Bienvenido a TeamManager!</string>
+    <string name="nombre_del_equipo">Nombre del equipo *</string>
+    <string name="creaci_n_de_equipo">Creación de Equipo</string>
+    <string name="nombre_del_equipo_">Nombre del equipo</string>
+    <string name="ciudad">Ciudad</string>
+    <string name="crear_equipo">Crear Equipo</string>
+    <string name="dile_a_uno_de_tus_compa_eros_de_equipo_que_te_comparta_el_c_digo_de_su_equipo_para_poder_unirte_a_el">¡Dile a uno de tus compañeros que te comparta el código de su equipo para poder unirte a el!</string>
 </resources>

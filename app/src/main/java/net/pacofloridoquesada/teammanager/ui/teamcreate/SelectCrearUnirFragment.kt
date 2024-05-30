@@ -9,17 +9,43 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
+import kotlinx.coroutines.launch
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentSelectCrearUnirBinding
 import net.pacofloridoquesada.teammanager.databinding.FragmentUserCreationBinding
+import net.pacofloridoquesada.teammanager.model.Player
+import net.pacofloridoquesada.teammanager.model.Trainer
 import net.pacofloridoquesada.teammanager.ui.login.LoginActivity
+import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
+import java.lang.Exception
 
 class SelectCrearUnirFragment : Fragment() {
 
     private var _binding: FragmentSelectCrearUnirBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
+    private val teamManagerViewModel: TeamManagerViewModel by activityViewModels()
+    private var player: Player? = null
+    private var trainer: Trainer? = null
+
+    private fun setupToCrearEquipo(){
+        binding.btCrearEquipo.setOnClickListener{
+            findNavController().navigate(
+                SelectCrearUnirFragmentDirections.actionSelectCrearUnirFragmentToCrearEquipoFragment()
+            )
+        }
+    }
+    private fun setupToUnirseEquipo(){
+        binding.btUnirseEquipo.setOnClickListener{
+            findNavController().navigate(
+                SelectCrearUnirFragmentDirections.actionSelectCrearUnirFragmentToUnirseEquipoFragment()
+            )
+        }
+    }
 
     private fun setupCerrarSesion() {
         binding.btCerrarSesionPantallaEquipo.setOnClickListener{
@@ -36,14 +62,19 @@ class SelectCrearUnirFragment : Fragment() {
                 .setMessage(R.string.eliminacion_cuenta_mensaje)
                 // Acción si pulsa si
                 .setPositiveButton(getString(R.string.si)){ v, _->
+                    //UID del usuario a eliminar
+                    val user = auth.currentUser!!.uid
+                    this.teamManagerViewModel.deletePlayerByUser(user)
+                    this.teamManagerViewModel.deleteTrainerByUser(user)
+
                     auth.currentUser!!.delete().addOnCompleteListener {
                         if (it.isSuccessful){
+
                             Log.i("Usuario Eliminado" , "Usuario Eliminado")
                             this.requireActivity().finish()
                             this.requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java))
                         }
                     }
-                    //Cerramos el dialogo
                     v.dismiss()
                 }
                 // Accion si pulsa no
@@ -51,7 +82,6 @@ class SelectCrearUnirFragment : Fragment() {
                 .setCancelable(false)
                 .create()
                 .show()
-
         }
     }
 
@@ -60,6 +90,8 @@ class SelectCrearUnirFragment : Fragment() {
 
         this.setupCerrarSesion()
         this.setupEliminarUsuario()
+        this.setupToCrearEquipo()
+        this.setupToUnirseEquipo()
     }
 
     override fun onCreateView(

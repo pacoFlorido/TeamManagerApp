@@ -9,5 +9,22 @@
         android:id="@+id/selectCrearUnirFragment"
         android:name="net.pacofloridoquesada.teammanager.ui.teamcreate.SelectCrearUnirFragment"
         android:label="fragment_select_crear_unir"
-        tools:layout="@layout/fragment_select_crear_unir" />
+        tools:layout="@layout/fragment_select_crear_unir" >
+        <action
+            android:id="@+id/action_selectCrearUnirFragment_to_crearEquipoFragment"
+            app:destination="@id/crearEquipoFragment" />
+        <action
+            android:id="@+id/action_selectCrearUnirFragment_to_unirseEquipoFragment"
+            app:destination="@id/unirseEquipoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/crearEquipoFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.teamcreate.CrearEquipoFragment"
+        android:label="fragment_crear_equipo"
+        tools:layout="@layout/fragment_crear_equipo" />
+    <fragment
+        android:id="@+id/unirseEquipoFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.teamcreate.UnirseEquipoFragment"
+        android:label="fragment_unirse_equipo"
+        tools:layout="@layout/fragment_unirse_equipo" />
 </navigation>
