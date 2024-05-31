@@ -1,11 +1,12 @@
 package net.pacofloridoquesada.teammanager.viewmodel
 
 import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Team
 import net.pacofloridoquesada.teammanager.model.Trainer
@@ -13,9 +14,14 @@ import net.pacofloridoquesada.teammanager.network.NetworkService
 
 class TeamManagerViewModel : ViewModel() {
 
-    private var player: Player? = null
-    private var trainer: Trainer? = null
-    private var teamm: Team? = null
+    private val _player = MutableLiveData<Player?>()
+    val player: LiveData<Player?> get() = _player
+
+    private val _trainer = MutableLiveData<Trainer?>()
+    val trainer: LiveData<Trainer?> get() = _trainer
+
+    private val _team = MutableLiveData<Team?>()
+    val team: LiveData<Team?> get() = _team
 
     fun addPlayer(player: Player) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -60,20 +66,40 @@ class TeamManagerViewModel : ViewModel() {
         }
     }
 
-    fun getPlayerByUser(user: String): Player? {
+    fun getUser(user: String) {
         viewModelScope.launch(Dispatchers.IO) {
-            player = NetworkService.teamManagerService.getPlayerByUser(user).body()
-        }
+            try {
+                val response = NetworkService.teamManagerService.getPlayerByUser(user)
+                if (response.isSuccessful){
+                    val playerr = response.body()
 
-        return player
+                    if (playerr != null){
+                        _player.postValue(playerr)
+                    } else {
+                        val response2 = NetworkService.teamManagerService.getTrainerByUser(user)
+                        if (response2.isSuccessful) {
+                            val trainerr = response2.body()
+
+                            if (trainerr != null){
+                                _trainer.postValue(trainerr)
+                            }
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                Log.e("Response", "Exception: ${e.message}")
+            }
+        }
     }
 
-    fun getTrainerByUser(user: String): Trainer? {
+    fun getTeamByUser(user: String){
         viewModelScope.launch(Dispatchers.IO) {
-            val trainer = NetworkService.teamManagerService.getTrainerByUser(user).body()
+            val response = NetworkService.teamManagerService.getTeamByUser(user)
+            if (response.isSuccessful){
+                Log.i("Response", "Team getted: ${response.body()}")
+                _team.postValue(response.body())
+            }
         }
-
-        return trainer
     }
 
     fun deletePlayerByUser(user: String) {

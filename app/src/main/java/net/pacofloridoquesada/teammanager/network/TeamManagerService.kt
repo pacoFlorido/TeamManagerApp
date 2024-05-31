@@ -1,5 +1,6 @@
 package net.pacofloridoquesada.teammanager.network
 
+import net.pacofloridoquesada.teammanager.model.Event
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Team
 import net.pacofloridoquesada.teammanager.model.Trainer
@@ -35,4 +36,10 @@ interface TeamManagerService {
 
     @PUT("team/update/addUser/{user}")
     suspend fun addUserToTeam(@Body team: Team, @Path("user") user: String) : Response<Team>
+
+    @GET("team/getBy/{user}")
+    suspend fun getTeamByUser(@Path("user") user: String) : Response<Team>
+
+    @GET("team/getNextEvent/{idTeam}")
+    suspend fun getNextEvent(@Path("idTeam") idTeam: Int) : Response<Event>
 }

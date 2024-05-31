@@ -253,4 +253,6 @@
     <string name="ciudad">Ciudad</string>
     <string name="crear_equipo">Crear Equipo</string>
     <string name="dile_a_uno_de_tus_compa_eros_de_equipo_que_te_comparta_el_c_digo_de_su_equipo_para_poder_unirte_a_el">¡Dile a uno de tus compañeros que te comparta el código de su equipo para poder unirte a el!</string>
+    <string name="pr_ximo_evento">Próximo evento</string>
+    <string name="no_hay_pr_ximos_eventos">No hay próximos eventos</string>
 </resources>

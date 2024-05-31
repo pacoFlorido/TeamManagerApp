@@ -19,6 +19,7 @@ import net.pacofloridoquesada.teammanager.databinding.FragmentSelectCrearUnirBin
 import net.pacofloridoquesada.teammanager.databinding.FragmentUserCreationBinding
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Trainer
+import net.pacofloridoquesada.teammanager.ui.MainActivity
 import net.pacofloridoquesada.teammanager.ui.login.LoginActivity
 import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 import java.lang.Exception
@@ -29,18 +30,26 @@ class SelectCrearUnirFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var auth: FirebaseAuth
     private val teamManagerViewModel: TeamManagerViewModel by activityViewModels()
-    private var player: Player? = null
-    private var trainer: Trainer? = null
 
-    private fun setupToCrearEquipo(){
-        binding.btCrearEquipo.setOnClickListener{
+    private fun isLogeado() {
+        teamManagerViewModel.team.observe(viewLifecycleOwner){team ->
+            if (team != null){
+                this.requireActivity().finish()
+                this.requireActivity().startActivity(Intent(requireContext(), MainActivity::class.java))
+            }
+        }
+    }
+
+    private fun setupToCrearEquipo() {
+        binding.btCrearEquipo.setOnClickListener {
             findNavController().navigate(
                 SelectCrearUnirFragmentDirections.actionSelectCrearUnirFragmentToCrearEquipoFragment()
             )
         }
     }
-    private fun setupToUnirseEquipo(){
-        binding.btUnirseEquipo.setOnClickListener{
+
+    private fun setupToUnirseEquipo() {
+        binding.btUnirseEquipo.setOnClickListener {
             findNavController().navigate(
                 SelectCrearUnirFragmentDirections.actionSelectCrearUnirFragmentToUnirseEquipoFragment()
             )
@@ -48,41 +57,48 @@ class SelectCrearUnirFragment : Fragment() {
     }
 
     private fun setupCerrarSesion() {
-        binding.btCerrarSesionPantallaEquipo.setOnClickListener{
+        binding.btCerrarSesionPantallaEquipo.setOnClickListener {
             auth.signOut()
             this.requireActivity().finish()
-            this.requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java))
+            this.requireActivity()
+                .startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
     }
 
     private fun setupEliminarUsuario() {
-        binding.btEliminarCuentaPantallaEquipo.setOnClickListener{
+        binding.btEliminarCuentaPantallaEquipo.setOnClickListener {
             AlertDialog.Builder(activity as Context)
                 .setTitle(R.string.eliminacion_de_cuenta)
                 .setMessage(R.string.eliminacion_cuenta_mensaje)
                 // Acción si pulsa si
-                .setPositiveButton(getString(R.string.si)){ v, _->
+                .setPositiveButton(getString(R.string.si)) { v, _ ->
                     //UID del usuario a eliminar
                     val user = auth.currentUser!!.uid
                     this.teamManagerViewModel.deletePlayerByUser(user)
                     this.teamManagerViewModel.deleteTrainerByUser(user)
 
                     auth.currentUser!!.delete().addOnCompleteListener {
-                        if (it.isSuccessful){
+                        if (it.isSuccessful) {
 
-                            Log.i("Usuario Eliminado" , "Usuario Eliminado")
+                            Log.i("Usuario Eliminado", "Usuario Eliminado")
                             this.requireActivity().finish()
-                            this.requireActivity().startActivity(Intent(requireContext(), LoginActivity::class.java))
+                            this.requireActivity()
+                                .startActivity(Intent(requireContext(), LoginActivity::class.java))
                         }
                     }
                     v.dismiss()
                 }
                 // Accion si pulsa no
-                .setNegativeButton(getString(R.string.no)){ v, _->v.dismiss()}
+                .setNegativeButton(getString(R.string.no)) { v, _ -> v.dismiss() }
                 .setCancelable(false)
                 .create()
                 .show()
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        this.isLogeado()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -101,6 +117,7 @@ class SelectCrearUnirFragment : Fragment() {
         _binding = FragmentSelectCrearUnirBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = FirebaseAuth.getInstance()
+        teamManagerViewModel.getTeamByUser(auth.currentUser!!.uid)
         return root
     }
 
