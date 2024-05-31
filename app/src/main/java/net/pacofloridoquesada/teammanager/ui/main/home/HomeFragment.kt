@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.databinding.FragmentHomeBinding
 
@@ -50,6 +51,12 @@ class HomeFragment : Fragment() {
                 binding.tvEventoMes.text = mes
                 binding.tvEventoHora.text = hora
             }
+        }
+    }
+
+    private fun setup50conMasGoles(){
+        homeViewModel.conMasGoles50.observe(viewLifecycleOwner){
+            //Setear la lista al adapter
         }
     }
 

@@ -19,6 +19,11 @@ class HomeViewModel : ViewModel() {
     private val _pichichi = MutableLiveData<Player?>()
     val pichichi: LiveData<Player?> get() = _pichichi
 
+    private val _conMasGoles50 = MutableLiveData<MutableList<Player>?>()
+    val conMasGoles50: LiveData<MutableList<Player>?> get() = _conMasGoles50
+
+
+
     fun getNextEvent(user: String) {
         try {
             viewModelScope.launch(Dispatchers.IO) {
@@ -47,7 +52,18 @@ class HomeViewModel : ViewModel() {
         }
     }
 
-    fun getDiezConMasGolesDeLaApp(user: String) {
-
+    fun get50ConMasGolesDeLaApp() {
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.get50WithMoreGoals()
+                if (response.isSuccessful){
+                    _conMasGoles50.postValue(response.body())
+                } else{
+                    Log.e("Response", "Error obteniendo jugadores: ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception){
+            Log.e("Exception: ", "${e.message}" )
+        }
     }
 }

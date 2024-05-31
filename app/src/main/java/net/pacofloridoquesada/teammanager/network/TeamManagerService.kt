@@ -43,4 +43,7 @@ interface TeamManagerService {
     @GET("team/getNextEvent/{idTeam}")
     suspend fun getNextEvent(@Path("idTeam") idTeam: Int) : Response<Event>
 
+    @GET("player/get50WithMoreGoals")
+    suspend fun get50WithMoreGoals() : Response<MutableList<Player>>
+
 }
