@@ -8,12 +8,16 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import net.pacofloridoquesada.teammanager.model.Event
+import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.network.NetworkService
 
 class HomeViewModel : ViewModel() {
 
     private val _nextEvent = MutableLiveData<Event?>()
     val nextEvent: LiveData<Event?> get() = _nextEvent
+
+    private val _pichichi = MutableLiveData<Player?>()
+    val pichichi: LiveData<Player?> get() = _pichichi
 
     fun getNextEvent(user: String) {
         try {
@@ -41,5 +45,9 @@ class HomeViewModel : ViewModel() {
         } catch (e: Exception){
             Log.e("Exception: ", "${e.message}" )
         }
+    }
+
+    fun getDiezConMasGolesDeLaApp(user: String) {
+
     }
 }

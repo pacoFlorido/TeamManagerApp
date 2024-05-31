@@ -9,23 +9,26 @@
 
     <TextView
         android:id="@+id/textView18"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Pichichi del equipo"
+        android:layout_marginEnd="16dp"
+        android:text="@string/top_50_jugadores_con_m_s_goles_de_teammanager"
+        android:textAlignment="center"
         android:textColor="@color/azul_principal"
         android:textSize="16sp"
         android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView" />
+        app:layout_constraintTop_toBottomOf="@+id/cvEventoProximo" />
 
     <View
         android:id="@+id/divider13"
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/azul_principal"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintBottom_toTopOf="@+id/cvEventoProximo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -85,10 +88,11 @@
         app:layout_constraintTop_toBottomOf="@+id/cvHomeBar" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardView"
+        android:id="@+id/cvEventoProximo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        app:cardCornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProximoEvento">
@@ -96,7 +100,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/beis_fondo">
+            android:background="@color/azul_gris_azulado_complementario">
 
             <TextView
                 android:id="@+id/tvEventoDesc"
@@ -149,9 +153,10 @@
 
                     <TextView
                         android:id="@+id/tvEventoMes"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="4dp"
+                        android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="12sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -162,8 +167,9 @@
 
                     <TextView
                         android:id="@+id/tvEventoDia"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:textAlignment="center"
                         android:textColor="#000000"
                         android:textSize="24sp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -198,7 +204,7 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/azul_principal"
-                android:paddingTop="23dp"
+                android:paddingTop="25dp"
                 android:text="@string/no_hay_pr_ximos_eventos"
                 android:textAlignment="center"
                 android:textColor="@color/beis_fondo"
@@ -211,8 +217,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.0"
-                tools:visibility="visible" />
+                tools:visibility="invisible" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView18"
+        tools:listitem="@layout/item_jugador" />
+
+    <View
+        android:id="@+id/divider9"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/azul_principal"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

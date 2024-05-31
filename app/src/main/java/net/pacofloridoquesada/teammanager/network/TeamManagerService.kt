@@ -42,4 +42,5 @@ interface TeamManagerService {
 
     @GET("team/getNextEvent/{idTeam}")
     suspend fun getNextEvent(@Path("idTeam") idTeam: Int) : Response<Event>
+
 }

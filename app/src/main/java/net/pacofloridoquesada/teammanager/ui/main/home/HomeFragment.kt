@@ -5,13 +5,10 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.databinding.FragmentHomeBinding
-import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 
 class HomeFragment : Fragment() {
 
@@ -27,6 +24,31 @@ class HomeFragment : Fragment() {
                 binding.tvNoHayEventoProximo.visibility = View.VISIBLE
             } else {
                 binding.tvNoHayEventoProximo.visibility = View.INVISIBLE
+                binding.tvEventoTitulo.text = event.titulo
+                binding.tvEventoDesc.text = event.descripcion
+                val fecha = event.fecha
+                val mesNumero = fecha.substring(5,7)
+                var mes = ""
+                when (mesNumero) {
+                    "01" -> mes = "Ene"
+                    "02" -> mes = "Feb"
+                    "03" -> mes = "Mar"
+                    "04" -> mes = "Abr"
+                    "05" -> mes = "May"
+                    "06" -> mes = "Jun"
+                    "07" -> mes = "Jul"
+                    "08" -> mes = "Ago"
+                    "09" -> mes = "Sep"
+                    "10" -> mes = "Oct"
+                    "11" -> mes = "Nov"
+                    "12" -> mes = "Dic"
+                }
+                val dia = fecha.substring(8,10)
+                val hora = fecha.substring(11,16)
+
+                binding.tvEventoDia.text = dia
+                binding.tvEventoMes.text = mes
+                binding.tvEventoHora.text = hora
             }
         }
     }
