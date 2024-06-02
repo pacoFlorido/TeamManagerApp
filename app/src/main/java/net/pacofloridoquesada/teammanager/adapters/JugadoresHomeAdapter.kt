@@ -3,16 +3,15 @@ package net.pacofloridoquesada.teammanager.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import net.pacofloridoquesada.teammanager.databinding.ItemJugadorBinding
 import net.pacofloridoquesada.teammanager.databinding.ItemJugadorConGolesBinding
 import net.pacofloridoquesada.teammanager.model.Player
 
 class JugadoresHomeAdapter : RecyclerView.Adapter<JugadoresHomeAdapter.JugadoresHomeViewHolder>() {
 
-    var lista50Player: List<Player>? = null
+    var listaPlayer: List<Player>? = null
 
-    fun setLista50(lista: List<Player>) {
-        lista50Player = lista
+    fun setLista(lista: List<Player>) {
+        listaPlayer = lista
         notifyDataSetChanged()
     }
 
@@ -28,11 +27,11 @@ class JugadoresHomeAdapter : RecyclerView.Adapter<JugadoresHomeAdapter.Jugadores
         return JugadoresHomeViewHolder(binding)
     }
 
-    override fun getItemCount(): Int = lista50Player?.size ?: 0
+    override fun getItemCount(): Int = listaPlayer?.size ?: 0
 
     override fun onBindViewHolder(holder: JugadoresHomeViewHolder, position: Int) {
         with(holder){
-            with(lista50Player!!.get(position)) {
+            with(listaPlayer!!.get(position)) {
                 binding.tvNombreJugador.text = name
                 binding.tvGoles.text = playerReport?.goals.toString()
             }

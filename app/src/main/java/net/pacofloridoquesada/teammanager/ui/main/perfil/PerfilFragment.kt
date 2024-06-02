@@ -66,6 +66,7 @@ class PerfilFragment : Fragment() {
                     binding.tvEdad.text = it.birthday
                     binding.tvRolUser.text = "Jugador"
                     binding.tvNacionalidad.text = it.nationality
+                    binding.tvAliasDato.text = it.alias
                 }
             }
         }

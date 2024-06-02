@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.adapters.JugadoresHomeAdapter
@@ -23,7 +22,7 @@ class HomeFragment : Fragment() {
 
 
     private fun setupProximoEvento() {
-        homeViewModel.nextEvent.observe(viewLifecycleOwner){ event ->
+        homeViewModel.nextEvent.observe(viewLifecycleOwner) { event ->
             Log.i("Event: ", event.toString())
             if (event == null) {
                 binding.tvNoHayEventoProximo.visibility = View.VISIBLE
@@ -32,7 +31,7 @@ class HomeFragment : Fragment() {
                 binding.tvEventoTitulo.text = event.titulo
                 binding.tvEventoDesc.text = event.descripcion
                 val fecha = event.fecha
-                val mesNumero = fecha.substring(5,7)
+                val mesNumero = fecha.substring(5, 7)
                 var mes = ""
                 when (mesNumero) {
                     "01" -> mes = "Ene"
@@ -48,8 +47,8 @@ class HomeFragment : Fragment() {
                     "11" -> mes = "Nov"
                     "12" -> mes = "Dic"
                 }
-                val dia = fecha.substring(8,10)
-                val hora = fecha.substring(11,16)
+                val dia = fecha.substring(8, 10)
+                val hora = fecha.substring(11, 16)
 
                 binding.tvEventoDia.text = dia
                 binding.tvEventoMes.text = mes
@@ -58,15 +57,15 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setupRecycler50masGoles(){
+    private fun setupRecycler50masGoles() {
         homeViewModel.get50ConMasGolesDeLaApp()
 
         //Creamos el adaptador
         jugadoresAdapter = JugadoresHomeAdapter()
 
-        homeViewModel.conMasGoles50.observe(viewLifecycleOwner){
+        homeViewModel.conMasGoles50.observe(viewLifecycleOwner) {
             if (it != null) {
-                jugadoresAdapter.setLista50(it)
+                jugadoresAdapter.setLista(it)
             }
 
             with(binding.rv50ConMasGoles) {
