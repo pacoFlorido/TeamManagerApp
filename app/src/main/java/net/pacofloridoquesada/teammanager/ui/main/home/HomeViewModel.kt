@@ -57,6 +57,7 @@ class HomeViewModel : ViewModel() {
             viewModelScope.launch(Dispatchers.IO) {
                 val response = NetworkService.teamManagerService.get50WithMoreGoals()
                 if (response.isSuccessful){
+                    Log.i("Response", "Jugadores: ${response.body()}")
                     _conMasGoles50.postValue(response.body())
                 } else{
                     Log.e("Response", "Error obteniendo jugadores: ${response.errorBody()}")

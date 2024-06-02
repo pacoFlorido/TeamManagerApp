@@ -27,7 +27,7 @@
         android:id="@+id/divider13"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/azul_principal"
+        android:background="@color/gris_complementario"
         app:layout_constraintBottom_toTopOf="@+id/cvEventoProximo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -194,7 +194,7 @@
                 android:id="@+id/divider7"
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:background="@color/azul_principal"
+                android:background="@color/gris_complementario"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
@@ -223,7 +223,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerView"
+        android:id="@+id/rv50ConMasGoles"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="16dp"
@@ -231,14 +231,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView18"
-        tools:listitem="@layout/item_jugador" />
+        tools:listitem="@layout/item_jugador_con_goles" />
 
     <View
         android:id="@+id/divider9"
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:background="@color/azul_principal"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        android:background="@color/gris_complementario"
+        app:layout_constraintBottom_toTopOf="@+id/rv50ConMasGoles"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

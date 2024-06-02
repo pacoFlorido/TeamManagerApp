@@ -8,7 +8,9 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.viewModelScope
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import net.pacofloridoquesada.teammanager.adapters.JugadoresHomeAdapter
 import net.pacofloridoquesada.teammanager.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {
@@ -17,6 +19,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
+    lateinit var jugadoresAdapter: JugadoresHomeAdapter
+
 
     private fun setupProximoEvento() {
         homeViewModel.nextEvent.observe(viewLifecycleOwner){ event ->
@@ -54,14 +58,30 @@ class HomeFragment : Fragment() {
         }
     }
 
-    private fun setup50conMasGoles(){
+    private fun setupRecycler50masGoles(){
+        homeViewModel.get50ConMasGolesDeLaApp()
+
+        //Creamos el adaptador
+        jugadoresAdapter = JugadoresHomeAdapter()
+
         homeViewModel.conMasGoles50.observe(viewLifecycleOwner){
-            //Setear la lista al adapter
+            if (it != null) {
+                jugadoresAdapter.setLista50(it)
+            }
+
+            with(binding.rv50ConMasGoles) {
+                //Creamos el layoutManager
+                layoutManager = LinearLayoutManager(activity)
+                //Le asignamos el adaptador
+                adapter = jugadoresAdapter
+            }
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        this.setupRecycler50masGoles()
         this.setupProximoEvento()
     }
 
