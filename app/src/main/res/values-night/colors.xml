@@ -1,4 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#365B6D</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
     <color name="blanco_color_nombre_equipo">#E4DADA</color>
+    <color name="azul_principal">#365B6D</color>
+    <color name="beis_fondo">#F2F1EC</color>
+    <color name="gris_complementario">#b9bcc6</color>
+    <color name="azul_gris_azulado_complementario">#DBDEE9</color>
+    <color name="gris_fecha_evento">#B9BCC6</color>
+    <color name="naranja_logo_complementario">#DF8226</color>
 </resources>
