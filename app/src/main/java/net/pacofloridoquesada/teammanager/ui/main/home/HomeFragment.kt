@@ -18,7 +18,7 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
     private val homeViewModel: HomeViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
-    lateinit var jugadoresAdapter: JugadoresHomeAdapter
+    private lateinit var jugadoresAdapter: JugadoresHomeAdapter
 
 
     private fun setupProximoEvento() {

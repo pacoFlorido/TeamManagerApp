@@ -29,7 +29,7 @@ class UserCreationFragment : Fragment() {
 
     private var _binding: FragmentUserCreationBinding? = null
     private val binding get() = _binding!!
-    val args: UserCreationFragmentArgs by navArgs()
+    private val args: UserCreationFragmentArgs by navArgs()
     private lateinit var auth: FirebaseAuth
     val teamManagerViewModel: TeamManagerViewModel by activityViewModels()
 

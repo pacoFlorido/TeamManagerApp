@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/beis_fondo"
+    tools:context=".ui.teamcreate.CrearEquipoFragment">
+
+
+    <Button
+        android:id="@+id/btSeleccionarHora"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_simple_button"
+        android:text="Seleccionar hora"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:icon="@drawable/baseline_calendar_month_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvHoraEvento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvHoraEvento"
+        app:layout_constraintTop_toTopOf="@+id/tvHoraEvento" />
+
+    <TextView
+        android:id="@+id/tvHoraEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="hh:mm"
+        android:padding="12dp"
+        android:textColor="@color/azul_principal"
+        android:textColorHint="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/btSeleccionarHora"
+        app:layout_constraintStart_toStartOf="@+id/tvFechaEvento"
+        app:layout_constraintTop_toBottomOf="@+id/textView22"
+        tools:text="hh:mm" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/fecha"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/etTituloEvento" />
+
+    <Button
+        android:id="@+id/btSelectFecha2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/bg_simple_button"
+        android:text="@string/seleccionar_fecha"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:icon="@drawable/baseline_calendar_month_24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFechaEvento"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvFechaEvento"
+        app:layout_constraintTop_toTopOf="@+id/tvFechaEvento" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/btCancelar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_cancelar_button"
+            android:text="@string/cancelar"
+            android:textAllCaps="false"
+            android:textColor="@color/naranja_logo_complementario"
+            android:textSize="18sp" />
+
+        <Button
+            android:id="@+id/btGuardarEvento"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_simple_button"
+            android:text="@string/guardar"
+            android:textAllCaps="false"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/t_tulo_del_evento_"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/etTituloEvento"
+        app:layout_constraintTop_toBottomOf="@+id/textView12" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        android:src="@drawable/ic_logo_app"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_logo_app" />
+
+    <EditText
+        android:id="@+id/etTituloEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="30dp"
+        android:background="@drawable/bg_edittext"
+        android:ems="10"
+        android:hint="@string/t_tulo_del_evento"
+        android:inputType="textPersonName"
+        android:padding="12dp"
+        android:textColor="@color/azul_principal"
+        android:textColorHint="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/creaci_n_de_evento"
+        android:textColor="@color/naranja_logo_complementario"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etDescripcion"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="24dp"
+        android:background="@drawable/bg_edittext"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="Descripción"
+        android:inputType="textMultiLine"
+        android:padding="12dp"
+        android:textColor="@color/azul_principal"
+        android:textColorHint="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="@+id/etTituloEvento"
+        app:layout_constraintStart_toStartOf="@+id/etTituloEvento"
+        app:layout_constraintTop_toBottomOf="@+id/textView20" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/descripci_n_del_evento"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/tvHoraEvento" />
+
+    <TextView
+        android:id="@+id/textView22"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Hora *"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/textView17"
+        app:layout_constraintTop_toBottomOf="@+id/tvFechaEvento" />
+
+    <TextView
+        android:id="@+id/tvFechaEvento"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/bg_edittext"
+        android:hint="dd/MM/yyyy"
+        android:padding="12dp"
+        android:textColor="@color/azul_principal"
+        android:textColorHint="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@+id/btSelectFecha2"
+        app:layout_constraintStart_toStartOf="@+id/etTituloEvento"
+        app:layout_constraintTop_toBottomOf="@+id/textView17"
+        tools:text="dd/MM/yyyy" />
+</androidx.constraintlayout.widget.ConstraintLayout>

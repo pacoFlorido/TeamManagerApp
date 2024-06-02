@@ -1,8 +1,10 @@
 package net.pacofloridoquesada.teammanager.ui
 
 import android.os.Bundle
+import android.view.View
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
@@ -27,6 +29,14 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.navView
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
+            if (nd.id == R.id.crearEventoFragment) {
+                navView.visibility = View.GONE
+            } else {
+                navView.visibility = View.VISIBLE
+            }
+        }
+
         val appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_home,

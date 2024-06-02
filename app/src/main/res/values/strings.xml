@@ -262,4 +262,13 @@
     <string name="rol">Rol</string>
     <string name="alias">Alias</string>
     <string name="invitarrr">Invitar</string>
+    <string name="a_adir_evento">Añadir evento</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="guardar">Guardar</string>
+    <string name="t_tulo_del_evento_">Título *</string>
+    <string name="t_tulo_del_evento">Título</string>
+    <string name="creaci_n_de_evento">Creación de Evento</string>
+    <string name="descripci_n_del_evento">Descripción</string>
+    <string name="fecha">Fecha *</string>
+    <string name="descripci_n">Descripción *</string>
 </resources>

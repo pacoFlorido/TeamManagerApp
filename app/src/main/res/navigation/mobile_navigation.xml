@@ -20,7 +20,11 @@
         android:id="@+id/navigation_eventos"
         android:name="net.pacofloridoquesada.teammanager.ui.main.eventos.EventosFragment"
         android:label="@string/title_eventos"
-        tools:layout="@layout/fragment_eventos" />
+        tools:layout="@layout/fragment_eventos" >
+        <action
+            android:id="@+id/toCrearEvento"
+            app:destination="@id/crearEventoFragment" />
+    </fragment>
     <fragment
         android:id="@+id/navigation_clasificacion"
         android:name="net.pacofloridoquesada.teammanager.ui.main.clasificacion.ClasificacionFragment"
@@ -31,4 +35,14 @@
         android:name="net.pacofloridoquesada.teammanager.ui.main.perfil.PerfilFragment"
         android:label="fragment_perfil"
         tools:layout="@layout/fragment_perfil" />
+    <fragment
+        android:id="@+id/crearEventoFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.eventos.CrearEventoFragment"
+        android:label="fragment_crear_evento"
+        tools:layout="@layout/fragment_crear_evento" >
+        <argument
+            android:name="idEvento"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
 </navigation>

@@ -55,4 +55,12 @@ interface TeamManagerService {
     @GET("team/{code}")
     suspend fun getTeamByCode(@Path("code") code: String) : Response<Team>
 
+    @GET("team/getNextEvents/{idTeam}")
+    suspend fun getNextEventsOfTeam(@Path("idTeam") idTeam: Int) : Response<MutableList<Event>>
+
+    @POST("team/event/{user}")
+    suspend fun createEvent(@Path("user") user: String, @Body event: Event) : Response<Event>
+
+    @PUT("team/event")
+    suspend fun updateEvent(@Body event: Event) : Response<Event>
 }
