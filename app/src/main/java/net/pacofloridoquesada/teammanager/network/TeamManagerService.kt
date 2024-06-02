@@ -52,4 +52,7 @@ interface TeamManagerService {
     @GET("trainer/trainer-list/{idTeam}")
     suspend fun getTrainersOfTeam(@Path("idTeam") idTeam: Int) : Response<MutableList<Trainer>>
 
+    @GET("team/{code}")
+    suspend fun getTeamByCode(@Path("code") code: String) : Response<Team>
+
 }

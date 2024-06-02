@@ -8,6 +8,18 @@
     tools:context=".ui.main.equipo.EquipoFragment">
 
     <TextView
+        android:id="@+id/tvCantidadEntrenadores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/laEntrenadores"
+        tools:text="0" />
+
+    <TextView
         android:id="@+id/laEntrenadores"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -173,5 +185,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/laEntrenadores" />
+
+    <TextView
+        android:id="@+id/tvCantidadJugadores"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/laJugadores"
+        tools:text="0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -66,25 +66,38 @@ class TeamManagerViewModel : ViewModel() {
         }
     }
 
-    fun getUser(user: String) {
+    fun getTeam(code: String) {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = NetworkService.teamManagerService.getTeamByCode(code)
+            if (response.isSuccessful){
+                Log.i("Response", "Team: ${response.body()}")
+                _team.postValue(response.body())
+            }
+        }
+    }
+
+    fun joinTeam(code: String, user: String) {
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = NetworkService.teamManagerService.getPlayerByUser(user)
-                if (response.isSuccessful){
-                    val playerr = response.body()
+                // Primera llamada a la API: crear el equipo
+                val response = NetworkService.teamManagerService.getTeamByCode(code)
+                if (response.isSuccessful) {
+                    val teamm = response.body()
+                    Log.i("Response", "Team created: $teamm")
 
-                    if (playerr != null){
-                        _player.postValue(playerr)
-                    } else {
-                        val response2 = NetworkService.teamManagerService.getTrainerByUser(user)
+                    // Segunda llamada a la API: agregar usuario al equipo
+                    teamm?.let {
+                        val response2 = NetworkService.teamManagerService.addUserToTeam(teamm, user)
                         if (response2.isSuccessful) {
-                            val trainerr = response2.body()
-
-                            if (trainerr != null){
-                                _trainer.postValue(trainerr)
-                            }
+                            Log.i("Response", "User added to team: ${response2.body()!!.id}")
+                        } else {
+                            Log.e("Response", "Error adding user to team: ${response2.errorBody()}")
                         }
+                    } ?: run {
+                        Log.e("Response", "Error: teamm is null")
                     }
+                } else {
+                    Log.e("Response", "Error creating team: ${response.errorBody()}")
                 }
             } catch (e: Exception) {
                 Log.e("Response", "Exception: ${e.message}")
@@ -92,10 +105,10 @@ class TeamManagerViewModel : ViewModel() {
         }
     }
 
-    fun getTeamByUser(user: String){
+    fun getTeamByUser(user: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = NetworkService.teamManagerService.getTeamByUser(user)
-            if (response.isSuccessful){
+            if (response.isSuccessful) {
                 Log.i("Response", "Team getted: ${response.body()}")
                 _team.postValue(response.body())
             }
@@ -116,7 +129,7 @@ class TeamManagerViewModel : ViewModel() {
         }
     }
 
-    fun addUserToTeam(team: Team?, user: String){
+    fun addUserToTeam(team: Team?, user: String) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = NetworkService.teamManagerService.addUserToTeam(team!!, user)
             Log.i("Response: ", "hola " + response.errorBody().toString())
