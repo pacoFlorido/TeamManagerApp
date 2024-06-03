@@ -63,4 +63,7 @@ interface TeamManagerService {
 
     @PUT("team/event")
     suspend fun updateEvent(@Body event: Event) : Response<Event>
+
+    @GET("team/getEventById/{idEvento}")
+    suspend fun getEventById(@Path("idEvento") idEvent: Int) : Response<Event>
 }

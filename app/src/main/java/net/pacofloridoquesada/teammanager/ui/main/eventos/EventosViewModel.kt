@@ -51,6 +51,22 @@ class EventosViewModel : ViewModel() {
         }
     }
 
+    fun getEventById(idEvent: Int){
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.getEventById(idEvent)
+                if (response.isSuccessful){
+                    Log.i("Response", "Evento obtenido: ${response.body()}")
+                    _evento.postValue(response.body())
+                } else{
+                    Log.e("Response", "Error obteniendo evento: ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception){
+            Log.e("Exception: ", "${e.message}" )
+        }
+    }
+
     fun updateEvent(event: Event) {
         try {
             viewModelScope.launch(Dispatchers.IO) {

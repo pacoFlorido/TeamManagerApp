@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.adapters.EventosAdapter
 import net.pacofloridoquesada.teammanager.databinding.FragmentEventosBinding
+import net.pacofloridoquesada.teammanager.model.Event
 import net.pacofloridoquesada.teammanager.ui.main.equipo.EquipoViewModel
 import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 
@@ -53,6 +54,23 @@ class EventosFragment : Fragment() {
         }
     }
 
+    private fun updateEvento(){
+        eventosAdapter.onEventoClickListener = object : EventosAdapter.OnEventoClickListener{
+            override fun onEventoClick(event: Event?) {
+                equipoViewModel.trainer.observe(viewLifecycleOwner) {
+                    if (it != null) {
+                        val action = EventosFragmentDirections.toCrearEvento(event?.id!!)
+                        findNavController().navigate(action)
+                    } else {
+                        val action = EventosFragmentDirections.toVerEvento(event?.id!!)
+                        findNavController().navigate(action)
+                    }
+                }
+
+            }
+        }
+    }
+
     private fun setupEventos() {
         eventosAdapter = EventosAdapter()
 
@@ -76,6 +94,7 @@ class EventosFragment : Fragment() {
         this.setupEquipo()
         this.setupEventos()
         this.setupEsEntrenador()
+        this.updateEvento()
     }
 
     override fun onCreateView(

@@ -55,6 +55,31 @@ class CrearEventoFragment : Fragment() {
         }
     }
 
+    private fun cargarEvento() {
+        if (args.idEvento != 0) {
+            eventosViewModel.getEventById(args.idEvento)
+
+            binding.tvCrearEvento.text = "Modificar evento"
+
+            eventosViewModel.evento.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    val fechaCompleta = it.fecha
+                    val fechaFormateada = fechaCompleta.substring(8,10) + "-" +
+                            fechaCompleta.substring(5,7) + "-" +
+                            fechaCompleta.substring(0,4)
+                    val horaFormateada = fechaCompleta.substring(11,13) + ":" + fechaCompleta.substring(14,16)
+
+                    binding.etTituloEvento.setText(it.titulo)
+                    binding.tvFechaEvento.text = fechaFormateada
+                    binding.tvHoraEvento.text = horaFormateada
+                    binding.etDescripcion.setText(it.descripcion)
+                }
+            }
+        } else {
+            binding.tvCrearEvento.text = "Crear evento"
+        }
+    }
+
     private fun guardarEvento() {
         val fecha = binding.tvFechaEvento.text.toString()
         val hora = binding.tvHoraEvento.text.toString()
@@ -75,6 +100,18 @@ class CrearEventoFragment : Fragment() {
                 auth.currentUser!!.uid
             )
         } else {
+            eventosViewModel.evento.observe(viewLifecycleOwner) {
+                if (it != null) {
+                    val eventoActualizado = Event(
+                        it.id,
+                        binding.etTituloEvento.text.toString(),
+                        binding.etDescripcion.text.toString(),
+                        fechaBBDD
+                    )
+
+                    eventosViewModel.updateEvent(eventoActualizado)
+                }
+            }
         }
 
 
@@ -136,6 +173,7 @@ class CrearEventoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.cargarEvento()
         this.inicializarDatePickers()
         this.setupCancelar()
         this.setupGuardar()

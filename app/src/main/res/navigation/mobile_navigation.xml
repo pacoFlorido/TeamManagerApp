@@ -24,6 +24,9 @@
         <action
             android:id="@+id/toCrearEvento"
             app:destination="@id/crearEventoFragment" />
+        <action
+            android:id="@+id/toVerEvento"
+            app:destination="@id/detalleEventoFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_clasificacion"
@@ -40,6 +43,16 @@
         android:name="net.pacofloridoquesada.teammanager.ui.main.eventos.CrearEventoFragment"
         android:label="fragment_crear_evento"
         tools:layout="@layout/fragment_crear_evento" >
+        <argument
+            android:name="idEvento"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleEventoFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.eventos.DetalleEventoFragment"
+        android:label="fragment_detalle_evento"
+        tools:layout="@layout/fragment_detalle_evento">
         <argument
             android:name="idEvento"
             app:argType="integer"

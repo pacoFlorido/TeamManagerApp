@@ -9,6 +9,8 @@ import net.pacofloridoquesada.teammanager.model.Event
 class EventosAdapter : RecyclerView.Adapter<EventosAdapter.EventosViewHolder>() {
 
     var listaEventos: List<Event>? = null
+    var onEventoClickListener: OnEventoClickListener? = null
+
 
     fun setLista(lista: List<Event>) {
         listaEventos = lista
@@ -18,9 +20,13 @@ class EventosAdapter : RecyclerView.Adapter<EventosAdapter.EventosViewHolder>() 
     inner class EventosViewHolder(val binding: ItemEventoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-
+            binding.root.setOnClickListener {
+                val evento = listaEventos?.get(this.adapterPosition)
+                onEventoClickListener?.onEventoClick(evento)
+            }
         }
     }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventosViewHolder {
         val binding = ItemEventoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -30,7 +36,7 @@ class EventosAdapter : RecyclerView.Adapter<EventosAdapter.EventosViewHolder>() 
     override fun getItemCount(): Int = listaEventos?.size ?: 0
 
     override fun onBindViewHolder(holder: EventosViewHolder, position: Int) {
-        with(holder){
+        with(holder) {
             with(listaEventos!!.get(position)) {
                 binding.tvEventoTitulo.text = titulo
                 binding.tvEventoDesc.text = descripcion
@@ -59,5 +65,9 @@ class EventosAdapter : RecyclerView.Adapter<EventosAdapter.EventosViewHolder>() 
                 binding.tvEventoHora.text = hora
             }
         }
+    }
+
+    interface OnEventoClickListener {
+        fun onEventoClick(event: Event?)
     }
 }
