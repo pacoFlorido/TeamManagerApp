@@ -8,13 +8,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.adapters.EntrenadoresAdapter
+import net.pacofloridoquesada.teammanager.adapters.EventosAdapter
 import net.pacofloridoquesada.teammanager.adapters.JugadoresEquipoAdapter
+import net.pacofloridoquesada.teammanager.adapters.OnJugadorClickListener
 import net.pacofloridoquesada.teammanager.databinding.FragmentEquipoBinding
+import net.pacofloridoquesada.teammanager.model.Event
+import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Team
+import net.pacofloridoquesada.teammanager.ui.main.eventos.EventosFragmentDirections
 import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 
 class EquipoFragment : Fragment() {
@@ -56,6 +62,23 @@ class EquipoFragment : Fragment() {
                 binding.ivAdministrarEquipo.visibility = View.VISIBLE
             } else {
                 binding.ivAdministrarEquipo.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    private fun toUpdateOVerJugador(){
+        jugadoresAdapter.onJugadorClickListener = object : OnJugadorClickListener{
+            override fun onJugadorClick(jugador: Player?) {
+                equipoViewModel.trainer.observe(viewLifecycleOwner) {
+                    if (it != null) {
+
+//                        findNavController().navigate()
+                    } else {
+                        val action = EquipoFragmentDirections.toDetalleJugador(jugador!!.user)
+                        findNavController().navigate(action)
+                    }
+                }
+
             }
         }
     }
@@ -111,11 +134,12 @@ class EquipoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.setupUsuarioEntrenador()
         this.setupEquipo()
         this.setupJugadoresEquipo()
         this.setupEntrenadoresEquipo()
-        this.setupUsuarioEntrenador()
         this.setupMostrarCodigoEquipo()
+        this.toUpdateOVerJugador()
     }
 
     override fun onCreateView(

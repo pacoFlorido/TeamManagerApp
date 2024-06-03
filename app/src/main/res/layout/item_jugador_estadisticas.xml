@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/beis_fondo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvImagenJugador"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView
+                    android:id="@+id/ivJugador"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@mipmap/ic_teammanager_launcher" />
+            </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/tvNombreJugador"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:textColor="@color/azul_principal"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/imageView10"
+                app:layout_constraintStart_toEndOf="@+id/cvImagenJugador"
+                app:layout_constraintTop_toTopOf="@+id/cvImagenJugador"
+                tools:text="Cristiano Ronaldo" />
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:background="@color/gris_complementario"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <ImageView
+                android:id="@+id/imageView8"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/cvImagenJugador"
+                app:layout_constraintStart_toStartOf="@+id/tvNombreJugador"
+                app:layout_constraintTop_toBottomOf="@+id/tvNombreJugador"
+                app:srcCompat="@drawable/soccer_ball" />
+
+            <TextView
+                android:id="@+id/tvGolesEstadisticas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/azul_principal"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                app:layout_constraintStart_toEndOf="@+id/imageView8"
+                app:layout_constraintTop_toTopOf="@+id/imageView8"
+                tools:text="0" />
+
+            <ImageView
+                android:id="@+id/imageView9"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="32dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvGolesEstadisticas"
+                app:layout_constraintEnd_toStartOf="@+id/tvAsistenciasEstadisticas"
+                app:layout_constraintStart_toEndOf="@+id/tvGolesEstadisticas"
+                app:layout_constraintTop_toTopOf="@+id/tvGolesEstadisticas"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_posicion_jugador" />
+
+            <TextView
+                android:id="@+id/tvAsistenciasEstadisticas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/azul_principal"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                app:layout_constraintStart_toEndOf="@+id/imageView9"
+                app:layout_constraintTop_toTopOf="@+id/imageView9"
+                tools:text="0" />
+
+            <TextView
+                android:id="@+id/textView26"
+                android:layout_width="0dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="32dp"
+                android:text="P"
+                android:textColor="@color/azul_principal"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                app:layout_constraintStart_toEndOf="@+id/tvAsistenciasEstadisticas"
+                app:layout_constraintTop_toTopOf="@+id/imageView9"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/tvPartidosEstadisticas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:textColor="@color/azul_principal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvAsistenciasEstadisticas"
+                app:layout_constraintStart_toEndOf="@+id/textView26"
+                app:layout_constraintTop_toTopOf="@+id/tvAsistenciasEstadisticas"
+                tools:text="0" />
+
+            <ImageView
+                android:id="@+id/imageView10"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/tvAmarillasEstadisticas"
+                app:layout_constraintTop_toTopOf="@+id/tvNombreJugador"
+                app:srcCompat="@drawable/amarilla" />
+
+            <TextView
+                android:id="@+id/tvAmarillasEstadisticas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:textColor="@color/azul_principal"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView10"
+                tools:text="0" />
+
+            <ImageView
+                android:id="@+id/imageView11"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintEnd_toStartOf="@+id/tvRojasEstadisticas"
+                app:layout_constraintTop_toBottomOf="@+id/imageView10"
+                app:srcCompat="@drawable/roja" />
+
+            <TextView
+                android:id="@+id/tvRojasEstadisticas"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:textColor="@color/azul_principal"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView11"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/imageView11"
+                tools:text="0" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

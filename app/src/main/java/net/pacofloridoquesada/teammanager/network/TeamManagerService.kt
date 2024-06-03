@@ -66,4 +66,7 @@ interface TeamManagerService {
 
     @GET("team/getEventById/{idEvento}")
     suspend fun getEventById(@Path("idEvento") idEvent: Int) : Response<Event>
+
+    @GET("/player/player-list/{idTeam}/{orden}")
+    suspend fun getPlayersByTeamOrderBy(@Path("idTeam") idTeam: Int, @Path("orden") orden: String) : Response<MutableList<Player>>
 }

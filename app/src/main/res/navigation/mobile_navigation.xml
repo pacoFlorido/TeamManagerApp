@@ -14,7 +14,11 @@
         android:id="@+id/navigation_equipo"
         android:name="net.pacofloridoquesada.teammanager.ui.main.equipo.EquipoFragment"
         android:label="@string/title_equipo"
-        tools:layout="@layout/fragment_equipo" />
+        tools:layout="@layout/fragment_equipo" >
+        <action
+            android:id="@+id/toDetalleJugador"
+            app:destination="@id/detalleJugadorFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_eventos"
@@ -57,5 +61,13 @@
             android:name="idEvento"
             app:argType="integer"
             android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/detalleJugadorFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.equipo.DetalleJugadorFragment"
+        android:label="DetalleJugadorFragment" >
+        <argument
+            android:name="userJugador"
+            app:argType="string" />
     </fragment>
 </navigation>

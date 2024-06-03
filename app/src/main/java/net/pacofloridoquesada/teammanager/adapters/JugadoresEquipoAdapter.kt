@@ -10,6 +10,7 @@ import net.pacofloridoquesada.teammanager.model.Player
 class JugadoresEquipoAdapter : RecyclerView.Adapter<JugadoresEquipoAdapter.JugadoresEquipoViewHolder>() {
 
     var listaPlayer: List<Player>? = null
+    var onJugadorClickListener: OnJugadorClickListener? = null
 
     fun setLista(lista: List<Player>) {
         listaPlayer = lista
@@ -19,7 +20,10 @@ class JugadoresEquipoAdapter : RecyclerView.Adapter<JugadoresEquipoAdapter.Jugad
     inner class JugadoresEquipoViewHolder(val binding: ItemJugadorBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-
+            binding.root.setOnClickListener {
+                val jugador = listaPlayer?.get(this.adapterPosition)
+                onJugadorClickListener?.onJugadorClick(jugador)
+            }
         }
     }
 

@@ -7,16 +7,47 @@
     android:background="@color/beis_fondo"
     tools:context=".ui.main.eventos.DetalleEventoFragment">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
-        android:src="@drawable/ic_logo_app"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvEventosBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_logo_app" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clEventosBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/azul_principal">
+
+            <TextView
+                android:id="@+id/tvEventosTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginBottom="24dp"
+                android:text="@string/title_eventos"
+                android:textColor="@color/beis_fondo"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivEventosIcon"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/ic_eventos_white"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvEventosTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/tvDescripcion"
@@ -36,7 +67,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="24dp"
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +78,7 @@
         android:id="@+id/textviewe2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="24dp"
         android:text="Hora"
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
@@ -90,47 +121,37 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/bg_simple_button"
+        android:background="@drawable/bg_cancelar_button"
         android:text="Volver"
         android:textAllCaps="false"
+        android:textColor="@color/naranja_logo_complementario"
         android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/tvDetalleEvento"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:layout_marginTop="24dp"
-        android:text="Detalle del evento"
-        android:textColor="@color/naranja_logo_complementario"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/textviewe12312"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="24dp"
         android:text="Título"
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvDetalleEvento"
-        app:layout_constraintTop_toBottomOf="@+id/tvDetalleEvento" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvEventosBar" />
 
     <TextView
         android:id="@+id/tvTituloEvento"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="30dp"
+        android:layout_marginEnd="24dp"
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"

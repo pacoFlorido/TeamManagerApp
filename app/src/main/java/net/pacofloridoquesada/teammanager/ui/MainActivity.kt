@@ -30,7 +30,9 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.nav_host_fragment_activity_main)
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
-            if (nd.id == R.id.crearEventoFragment || nd.id == R.id.detalleEventoFragment) {
+            if (nd.id == R.id.crearEventoFragment ||
+                nd.id == R.id.detalleEventoFragment ||
+                nd.id == R.id.detalleJugadorFragment) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE

@@ -54,7 +54,7 @@ class EventosFragment : Fragment() {
         }
     }
 
-    private fun updateEvento(){
+    private fun toUpdateOVerEvento(){
         eventosAdapter.onEventoClickListener = object : EventosAdapter.OnEventoClickListener{
             override fun onEventoClick(event: Event?) {
                 equipoViewModel.trainer.observe(viewLifecycleOwner) {
@@ -94,7 +94,7 @@ class EventosFragment : Fragment() {
         this.setupEquipo()
         this.setupEventos()
         this.setupEsEntrenador()
-        this.updateEvento()
+        this.toUpdateOVerEvento()
     }
 
     override fun onCreateView(

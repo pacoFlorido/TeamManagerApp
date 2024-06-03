@@ -41,12 +41,12 @@ class PerfilFragment : Fragment() {
         perfilViewModel.trainer.observe(viewLifecycleOwner) {
             if (it != null){
                 val date = it.birthday
-                val dateFormatted = date.substring(8, 10) + "-" +
-                        date.substring(5, 7) + "-" +
+                val fechaFormateada = date.substring(8,10) + "-" +
+                        date.substring(5,7) + "-" +
                         date.substring(0,4)
 
                 binding.tvNombreUser.text = it.name
-                binding.tvEdad.text = dateFormatted
+                binding.tvEdad.text = fechaFormateada
                 binding.tvRolUser.text = "Entrenador"
                 binding.tvNacionalidad.text = it.nationality
 
@@ -59,11 +59,16 @@ class PerfilFragment : Fragment() {
             }
         }
         if (jugador) {
+
             perfilViewModel.getPlayer(auth.currentUser!!.uid)
             perfilViewModel.player.observe(viewLifecycleOwner) {
                 if (it != null){
+                    val date = it.birthday
+                    val fechaFormateada = date.substring(8,10) + "-" +
+                            date.substring(5,7) + "-" +
+                            date.substring(0,4)
                     binding.tvNombreUser.text = it.name
-                    binding.tvEdad.text = it.birthday
+                    binding.tvEdad.text = fechaFormateada
                     binding.tvRolUser.text = "Jugador"
                     binding.tvNacionalidad.text = it.nationality
                     binding.tvAliasDato.text = it.alias
