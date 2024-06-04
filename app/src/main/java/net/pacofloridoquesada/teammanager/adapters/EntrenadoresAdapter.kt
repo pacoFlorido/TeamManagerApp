@@ -11,6 +11,7 @@ import net.pacofloridoquesada.teammanager.model.Trainer
 class EntrenadoresAdapter : RecyclerView.Adapter<EntrenadoresAdapter.EntrenadoresViewHolder>() {
 
     var listaTrainer: List<Trainer>? = null
+    var onEntrenadorClickListener: OnEntrenadorClickListener? = null
 
     fun setLista(lista: List<Trainer>) {
         listaTrainer = lista
@@ -20,7 +21,10 @@ class EntrenadoresAdapter : RecyclerView.Adapter<EntrenadoresAdapter.Entrenadore
     inner class EntrenadoresViewHolder(val binding: ItemEntrenadorBinding) :
         RecyclerView.ViewHolder(binding.root) {
         init {
-
+            binding.root.setOnClickListener {
+                val entrenador = listaTrainer?.get(this.adapterPosition)
+                onEntrenadorClickListener?.onEntrenadorClick(entrenador)
+            }
         }
     }
 
@@ -37,5 +41,9 @@ class EntrenadoresAdapter : RecyclerView.Adapter<EntrenadoresAdapter.Entrenadore
                 binding.tvNombreJugador.text = name
             }
         }
+    }
+
+    interface OnEntrenadorClickListener {
+        fun onEntrenadorClick(entrenador: Trainer?)
     }
 }

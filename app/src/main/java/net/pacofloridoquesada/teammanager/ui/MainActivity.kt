@@ -33,7 +33,9 @@ class MainActivity : AppCompatActivity() {
             if (nd.id == R.id.crearEventoFragment ||
                 nd.id == R.id.detalleEventoFragment ||
                 nd.id == R.id.detalleJugadorFragment ||
-                nd.id == R.id.actualizarJugadorFragment) {
+                nd.id == R.id.actualizarJugadorFragment ||
+                nd.id == R.id.detalleEntrenadorFragment ||
+                nd.id == R.id.detalleEquipoFragment) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE

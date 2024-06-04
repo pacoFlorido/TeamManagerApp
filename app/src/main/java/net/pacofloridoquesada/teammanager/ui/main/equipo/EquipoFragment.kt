@@ -20,6 +20,7 @@ import net.pacofloridoquesada.teammanager.databinding.FragmentEquipoBinding
 import net.pacofloridoquesada.teammanager.model.Event
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Team
+import net.pacofloridoquesada.teammanager.model.Trainer
 import net.pacofloridoquesada.teammanager.ui.main.eventos.EventosFragmentDirections
 import net.pacofloridoquesada.teammanager.viewmodel.TeamManagerViewModel
 
@@ -67,6 +68,15 @@ class EquipoFragment : Fragment() {
         binding.cvEquipoBar.setOnClickListener {
             val action = EquipoFragmentDirections.toDetalleEquipo()
             findNavController().navigate(action)
+        }
+    }
+
+    private fun toDetalleEntrenador() {
+        entrenadoresAdapter.onEntrenadorClickListener = object : EntrenadoresAdapter.OnEntrenadorClickListener {
+            override fun onEntrenadorClick(entrenador: Trainer?) {
+                val action = EquipoFragmentDirections.toDetalleEntrenador(entrenador!!.user)
+                findNavController().navigate(action)
+            }
         }
     }
 
@@ -127,6 +137,7 @@ class EquipoFragment : Fragment() {
         this.setupMostrarCodigoEquipo()
         this.toUpdateOVerJugador()
         this.toDetalleEquipo()
+        this.toDetalleEntrenador()
     }
 
     override fun onCreateView(
