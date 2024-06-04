@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/beis_fondo"
-    android:isScrollContainer="true"
     tools:context=".ui.main.perfil.PerfilFragment">
 
     <EditText
@@ -92,6 +91,7 @@
         android:id="@+id/etGoles"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/bg_edittext"
@@ -103,7 +103,7 @@
         android:textColorHint="@color/azul_principal"
         android:textSize="16sp"
         app:layout_constraintEnd_toStartOf="@+id/etAsistencias"
-        app:layout_constraintStart_toStartOf="@+id/textView28"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView28" />
 
     <EditText
@@ -295,11 +295,11 @@
             android:layout_marginEnd="4dp"
             android:layout_weight="1"
             android:background="@drawable/bg_cancelar_button"
-            android:textColor="@color/naranja_logo_complementario"
-            android:textStyle="bold"
             android:text="@string/cancelar"
             android:textAllCaps="false"
-            android:textSize="18sp" />
+            android:textColor="@color/naranja_logo_complementario"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btActualizarJugador"

@@ -74,17 +74,6 @@
             android:background="@drawable/bg_barraequipo">
 
             <ImageView
-                android:id="@+id/ivAdministrarEquipo"
-                android:layout_width="35dp"
-                android:layout_height="35dp"
-                android:layout_marginEnd="24dp"
-                android:contentDescription="@string/opciones_equipo"
-                android:src="@drawable/ic_equipo_config"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
                 android:id="@+id/ivEquipo"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
@@ -99,13 +88,17 @@
 
             <TextView
                 android:id="@+id/tvNombreEquipo"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:layout_marginEnd="32dp"
                 android:textColor="@color/blanco_color_nombre_equipo"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:ellipsize="end"
+                android:maxLines="1"
                 app:layout_constraintBottom_toBottomOf="@+id/ivEquipo"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/ivEquipo"
                 app:layout_constraintTop_toTopOf="@+id/ivEquipo"
                 tools:text="FC Barcelona" />

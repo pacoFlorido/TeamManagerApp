@@ -21,12 +21,34 @@ class ActualizarJugadorFragment : Fragment() {
     private val binding get() = _binding!!
     private val args: DetalleJugadorFragmentArgs by navArgs()
     private val perfilViewModel: PerfilViewModel by activityViewModels()
-    private val equipoViewModel: EquipoViewModel by activityViewModels()
+
+    private fun setupGuardar() {
+        binding.btActualizarJugador.setOnClickListener {
+            this.validarCampos()
+        }
+    }
+
+    private fun validarCampos() {
+        if (!binding.etGoles.text.isEmpty() &&
+            !binding.etAsistencias.text.isEmpty() &&
+            !binding.etPartidos.text.isEmpty() &&
+            !binding.etAmarillas.text.isEmpty() &&
+            !binding.etRojas.text.isEmpty()
+        ) {
+            this.actualizarJugador()
+        } else {
+            Toast.makeText(
+                this.requireContext(),
+                "No se debe dejar ningún campo vacío, completa con '0' si no hay datos para ese campo.",
+                Toast.LENGTH_SHORT,
+            ).show()
+        }
+    }
 
     private fun cargarDatos() {
         perfilViewModel.getPlayer(args.userJugador)
 
-        perfilViewModel.player.observe(viewLifecycleOwner) {player ->
+        perfilViewModel.player.observe(viewLifecycleOwner) { player ->
             if (player != null) {
                 binding.tvNombreUser.text = player.name
 
@@ -41,34 +63,21 @@ class ActualizarJugadorFragment : Fragment() {
     }
 
     private fun actualizarJugador() {
-        binding.btActualizarJugador.setOnClickListener {
-            perfilViewModel.player.observe(viewLifecycleOwner) {player ->
-                if (player != null) {
-                    if (!binding.etGoles.text.isEmpty() &&
-                        !binding.etAsistencias.text.isEmpty() &&
-                        !binding.etPartidos.text.isEmpty() &&
-                        !binding.etAmarillas.text.isEmpty() &&
-                        !binding.etRojas.text.isEmpty()) {
+        perfilViewModel.player.observe(viewLifecycleOwner) { player ->
+            if (player != null) {
 
-                        player.playerReport!!.goals = binding.etGoles.text.toString().toInt()
-                        player.playerReport.assists = binding.etAsistencias.text.toString().toInt()
-                        player.playerReport.matches = binding.etPartidos.text.toString().toInt()
-                        player.playerReport.yellowCards = binding.etAmarillas.text.toString().toInt()
-                        player.playerReport.redCards = binding.etRojas.text.toString().toInt()
-                    } else {
-                        Toast.makeText(
-                            this.requireContext(),
-                            "No se debe dejar ningún campo vacío, completa con '0' si no hay datos para ese campo.",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                    }
+                player.playerReport!!.goals = binding.etGoles.text.toString().toInt()
+                player.playerReport.assists = binding.etAsistencias.text.toString().toInt()
+                player.playerReport.matches = binding.etPartidos.text.toString().toInt()
+                player.playerReport.yellowCards = binding.etAmarillas.text.toString().toInt()
+                player.playerReport.redCards = binding.etRojas.text.toString().toInt()
 
-                    equipoViewModel.updatePlayer(player)
+                perfilViewModel.updatePlayerRecord(player)
 
-                    findNavController().popBackStack()
-                }
+                findNavController().popBackStack()
             }
         }
+
     }
 
     private fun setupCancelar() {
@@ -80,7 +89,7 @@ class ActualizarJugadorFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.cargarDatos()
-        this.actualizarJugador()
+        this.setupGuardar()
         this.setupCancelar()
     }
 
@@ -95,6 +104,6 @@ class ActualizarJugadorFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
-
+        _binding = null
     }
 }

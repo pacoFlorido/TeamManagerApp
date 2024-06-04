@@ -54,24 +54,19 @@ class EquipoFragment : Fragment() {
         }
     }
 
-    private fun setupUsuarioEntrenador() {
-        equipoViewModel.getTrainer(auth.currentUser!!.uid)
-
-        equipoViewModel.trainer.observe(viewLifecycleOwner) {
-            if (it != null) {
-                binding.ivAdministrarEquipo.visibility = View.VISIBLE
-            } else {
-                binding.ivAdministrarEquipo.visibility = View.INVISIBLE
-            }
-        }
-    }
-
     private fun toUpdateOVerJugador(){
         jugadoresAdapter.onJugadorClickListener = object : OnJugadorClickListener{
             override fun onJugadorClick(jugador: Player?) {
                 val action = EquipoFragmentDirections.toDetalleJugador(jugador!!.user)
                 findNavController().navigate(action)
             }
+        }
+    }
+
+    private fun toDetalleEquipo() {
+        binding.cvEquipoBar.setOnClickListener {
+            val action = EquipoFragmentDirections.toDetalleEquipo()
+            findNavController().navigate(action)
         }
     }
 
@@ -126,12 +121,12 @@ class EquipoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.setupUsuarioEntrenador()
         this.setupEquipo()
         this.setupJugadoresEquipo()
         this.setupEntrenadoresEquipo()
         this.setupMostrarCodigoEquipo()
         this.toUpdateOVerJugador()
+        this.toDetalleEquipo()
     }
 
     override fun onCreateView(

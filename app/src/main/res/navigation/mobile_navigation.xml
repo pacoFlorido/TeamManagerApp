@@ -18,6 +18,9 @@
         <action
             android:id="@+id/toDetalleJugador"
             app:destination="@id/detalleJugadorFragment" />
+        <action
+            android:id="@+id/toDetalleEquipo"
+            app:destination="@id/detalleEquipoFragment" />
     </fragment>
 
     <fragment
@@ -82,4 +85,9 @@
             android:name="userJugador"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/detalleEquipoFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.equipo.DetalleEquipoFragment"
+        android:label="fragment_detalle_equipo"
+        tools:layout="@layout/fragment_detalle_equipo" />
 </navigation>

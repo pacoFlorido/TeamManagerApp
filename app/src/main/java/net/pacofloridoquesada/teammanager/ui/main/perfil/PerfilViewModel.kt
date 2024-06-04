@@ -50,4 +50,20 @@ class PerfilViewModel : ViewModel() {
             Log.e("Exception: ", "${e.message}")
         }
     }
+
+    fun updatePlayerRecord(player : Player){
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.updatePlayer(player)
+                if (response.isSuccessful) {
+                    Log.i("Response", "Jugador actualizado: ${response.body()}")
+                    _player.postValue(response.body())
+                } else {
+                    Log.e("Error", "Error obteniendo jugador actualizado, ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Exception: ", "${e.message}")
+        }
+    }
 }
