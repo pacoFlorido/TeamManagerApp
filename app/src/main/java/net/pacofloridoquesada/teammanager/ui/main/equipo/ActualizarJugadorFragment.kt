@@ -5,16 +5,96 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.R
+import net.pacofloridoquesada.teammanager.databinding.FragmentActualizarJugadorBinding
+import net.pacofloridoquesada.teammanager.databinding.FragmentDetalleJugadorBinding
+import net.pacofloridoquesada.teammanager.ui.main.perfil.PerfilViewModel
 
 class ActualizarJugadorFragment : Fragment() {
 
+    private var _binding: FragmentActualizarJugadorBinding? = null
+    private val binding get() = _binding!!
+    private val args: DetalleJugadorFragmentArgs by navArgs()
+    private val perfilViewModel: PerfilViewModel by activityViewModels()
+    private val equipoViewModel: EquipoViewModel by activityViewModels()
+
+    private fun cargarDatos() {
+        perfilViewModel.getPlayer(args.userJugador)
+
+        perfilViewModel.player.observe(viewLifecycleOwner) {player ->
+            if (player != null) {
+                binding.tvNombreUser.text = player.name
+
+                binding.etGoles.setText(player.playerReport!!.goals.toString())
+                binding.etAsistencias.setText(player.playerReport.assists.toString())
+                binding.etPartidos.setText(player.playerReport.matches.toString())
+                binding.etAmarillas.setText(player.playerReport.yellowCards.toString())
+                binding.etRojas.setText(player.playerReport.redCards.toString())
+            }
+        }
+
+    }
+
+    private fun actualizarJugador() {
+        binding.btActualizarJugador.setOnClickListener {
+            perfilViewModel.player.observe(viewLifecycleOwner) {player ->
+                if (player != null) {
+                    if (!binding.etGoles.text.isEmpty() &&
+                        !binding.etAsistencias.text.isEmpty() &&
+                        !binding.etPartidos.text.isEmpty() &&
+                        !binding.etAmarillas.text.isEmpty() &&
+                        !binding.etRojas.text.isEmpty()) {
+
+                        player.playerReport!!.goals = binding.etGoles.text.toString().toInt()
+                        player.playerReport.assists = binding.etAsistencias.text.toString().toInt()
+                        player.playerReport.matches = binding.etPartidos.text.toString().toInt()
+                        player.playerReport.yellowCards = binding.etAmarillas.text.toString().toInt()
+                        player.playerReport.redCards = binding.etRojas.text.toString().toInt()
+                    } else {
+                        Toast.makeText(
+                            this.requireContext(),
+                            "No se debe dejar ningún campo vacío, completa con '0' si no hay datos para ese campo.",
+                            Toast.LENGTH_SHORT,
+                        ).show()
+                    }
+
+                    equipoViewModel.updatePlayer(player)
+
+                    findNavController().popBackStack()
+                }
+            }
+        }
+    }
+
+    private fun setupCancelar() {
+        binding.btCancelarActualizacion.setOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        this.cargarDatos()
+        this.actualizarJugador()
+        this.setupCancelar()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_actualizar_jugador, container, false)
+        _binding = FragmentActualizarJugadorBinding.inflate(inflater, container, false)
+        val root: View = binding.root
+        return root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
     }
 }

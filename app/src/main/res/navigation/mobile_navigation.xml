@@ -69,5 +69,17 @@
         <argument
             android:name="userJugador"
             app:argType="string" />
+        <action
+            android:id="@+id/toActualizarJugador"
+            app:destination="@id/actualizarJugadorFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/actualizarJugadorFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.equipo.ActualizarJugadorFragment"
+        android:label="fragment_actualizar_jugador"
+        tools:layout="@layout/fragment_actualizar_jugador">
+        <argument
+            android:name="userJugador"
+            app:argType="string" />
     </fragment>
 </navigation>

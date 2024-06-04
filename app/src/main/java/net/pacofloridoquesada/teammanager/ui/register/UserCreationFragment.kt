@@ -121,6 +121,7 @@ class UserCreationFragment : Fragment() {
                     //Creamos Jugador
                     teamManagerViewModel.addPlayer(
                         Player(
+                            null,
                             "",
                             fechaBBDD,
                             binding.etNombreCompleto.text.toString(),

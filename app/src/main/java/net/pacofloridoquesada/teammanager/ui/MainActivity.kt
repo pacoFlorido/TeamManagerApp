@@ -32,7 +32,8 @@ class MainActivity : AppCompatActivity() {
         navController.addOnDestinationChangedListener { _, nd: NavDestination, _ ->
             if (nd.id == R.id.crearEventoFragment ||
                 nd.id == R.id.detalleEventoFragment ||
-                nd.id == R.id.detalleJugadorFragment) {
+                nd.id == R.id.detalleJugadorFragment ||
+                nd.id == R.id.actualizarJugadorFragment) {
                 navView.visibility = View.GONE
             } else {
                 navView.visibility = View.VISIBLE

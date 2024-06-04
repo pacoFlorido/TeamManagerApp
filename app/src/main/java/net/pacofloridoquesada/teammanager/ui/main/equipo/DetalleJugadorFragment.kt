@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.R
@@ -22,7 +23,27 @@ class DetalleJugadorFragment : Fragment() {
     private var _binding: FragmentDetalleJugadorBinding? = null
     private val binding get() = _binding!!
     private val args: DetalleJugadorFragmentArgs by navArgs()
+    private lateinit var auth: FirebaseAuth
     private val perfilViewModel: PerfilViewModel by activityViewModels()
+
+    fun mostrarEditar() {
+        perfilViewModel.getTrainer(auth.currentUser!!.uid)
+
+        perfilViewModel.trainer.observe(viewLifecycleOwner) {
+            if (it != null) {
+                binding.ivEditarJugador.visibility = View.VISIBLE
+            } else {
+                binding.ivEditarJugador.visibility = View.INVISIBLE
+            }
+        }
+    }
+
+    fun toEditarEstadisticas() {
+        binding.ivEditarJugador.setOnClickListener {
+            val action = DetalleJugadorFragmentDirections.toActualizarJugador(args.userJugador)
+            findNavController().navigate(action)
+        }
+    }
 
     fun setupIniciarlizarDatosJugador() {
         perfilViewModel.getPlayer(args.userJugador)
@@ -33,9 +54,6 @@ class DetalleJugadorFragment : Fragment() {
                 val anyoNacimiento = Integer.parseInt(it.birthday.substring(0,4))
                 val mesNacimiento = Integer.parseInt(it.birthday.substring(5,7))
                 val diaNacimiento = Integer.parseInt(it.birthday.substring(8,10))
-
-
-
 
                 val hoy = LocalDateTime.now()
                 var edad = hoy.year - anyoNacimiento - 1
@@ -50,13 +68,27 @@ class DetalleJugadorFragment : Fragment() {
                 binding.tvNombreUser.text = it.name
                 binding.tvNacionalidad2.text = it.nationality
                 binding.tvEdad2.text = edad.toString()
+                binding.tvGolesEstats.text = it.playerReport!!.goals.toString()
+                binding.tvAsistenciasEstats.text = it.playerReport.assists.toString()
+                binding.tvPartidosEstats.text = it.playerReport.matches.toString()
+                binding.tvAmarillasEstats.text = it.playerReport.yellowCards.toString()
+                binding.tvRojasEstats.text = it.playerReport.redCards.toString()
             }
+        }
+    }
+
+    private fun setupVolver() {
+        binding.btVolver.setOnClickListener {
+            findNavController().popBackStack()
         }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.mostrarEditar()
+        this.toEditarEstadisticas()
         this.setupIniciarlizarDatosJugador()
+        this.setupVolver()
     }
 
     override fun onCreateView(
@@ -65,7 +97,7 @@ class DetalleJugadorFragment : Fragment() {
     ): View? {
         _binding = FragmentDetalleJugadorBinding.inflate(inflater, container, false)
         val root: View = binding.root
-
+        auth = FirebaseAuth.getInstance()
         return root
     }
 

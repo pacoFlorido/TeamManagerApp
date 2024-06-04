@@ -23,6 +23,9 @@ class EquipoViewModel : ViewModel() {
     private val _trainer = MutableLiveData<Trainer?>()
     val trainer: LiveData<Trainer?> get() = _trainer
 
+    private val _player = MutableLiveData<Player?>()
+    val player: LiveData<Player?> get() = _player
+
     fun getPlayersByIdTeam(idTeam: Int){
         try {
             viewModelScope.launch(Dispatchers.IO) {
@@ -64,6 +67,22 @@ class EquipoViewModel : ViewModel() {
                     _trainer.postValue(response.body())
                 } else {
                     Log.e("Error", "Error obteniendo entrenador, ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Exception: ", "${e.message}")
+        }
+    }
+
+    fun updatePlayer(player : Player){
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.updatePlayer(player)
+                if (response.isSuccessful) {
+                    Log.i("Response", "Jugador actualizado: ${response.body()}")
+                    _player.postValue(response.body())
+                } else {
+                    Log.e("Error", "Error obteniendo jugador actualizado, ${response.errorBody()}")
                 }
             }
         } catch (e: Exception) {

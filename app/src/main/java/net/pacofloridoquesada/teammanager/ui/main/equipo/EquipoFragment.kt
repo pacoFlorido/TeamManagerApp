@@ -69,16 +69,8 @@ class EquipoFragment : Fragment() {
     private fun toUpdateOVerJugador(){
         jugadoresAdapter.onJugadorClickListener = object : OnJugadorClickListener{
             override fun onJugadorClick(jugador: Player?) {
-                equipoViewModel.trainer.observe(viewLifecycleOwner) {
-                    if (it != null) {
-
-//                        findNavController().navigate()
-                    } else {
-                        val action = EquipoFragmentDirections.toDetalleJugador(jugador!!.user)
-                        findNavController().navigate(action)
-                    }
-                }
-
+                val action = EquipoFragmentDirections.toDetalleJugador(jugador!!.user)
+                findNavController().navigate(action)
             }
         }
     }
