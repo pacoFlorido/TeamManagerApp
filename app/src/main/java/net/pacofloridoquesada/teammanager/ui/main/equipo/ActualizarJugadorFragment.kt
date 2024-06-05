@@ -77,7 +77,6 @@ class ActualizarJugadorFragment : Fragment() {
                 findNavController().popBackStack()
             }
         }
-
     }
 
     private fun setupCancelar() {

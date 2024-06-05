@@ -274,4 +274,9 @@
     <string name="fecha_">Fecha</string>
     <string name="edad">Edad</string>
     <string name="actualizar">Actualizar</string>
+    <string name="volver">Volver</string>
+    <string name="edici_n_perfil">Edición Perfil</string>
+    <string name="selecciona_una_im_gen_para_tu_perfil">Selecciona una imágen para tu perfil</string>
+    <string name="opciones">Opciones</string>
+    <string name="abandonar_equipo">Abandonar Equipo</string>
 </resources>

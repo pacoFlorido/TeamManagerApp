@@ -8,6 +8,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.PATCH
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -72,4 +73,10 @@ interface TeamManagerService {
 
     @PUT("player/update")
     suspend fun updatePlayer(@Body player: Player) : Response<Player>
+
+    @PUT("trainer/update")
+    suspend fun updateTrainer(@Body trainer: Trainer) : Response<Trainer>
+
+    @PATCH("team/deleteUserFromTeam/{user}")
+    suspend fun deleteUserFromTeam(@Path("user") user: String) : Response<Team>
 }

@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentPerfilBinding
@@ -47,14 +48,12 @@ class PerfilFragment : Fragment() {
 
                 binding.tvNombreUser.text = it.name
                 binding.tvEdad.text = fechaFormateada
-                binding.tvRolUser.text = "Entrenador"
+                binding.tvPerfilTitle.text = "Perfil Entrenador"
                 binding.tvNacionalidad.text = it.nationality
 
-                binding.tvAlias.visibility = View.INVISIBLE
                 binding.tvAliasDato.visibility = View.INVISIBLE
                 jugador = false
             } else {
-                binding.tvAlias.visibility = View.VISIBLE
                 binding.tvAliasDato.visibility = View.VISIBLE
             }
         }
@@ -69,56 +68,28 @@ class PerfilFragment : Fragment() {
                             date.substring(0,4)
                     binding.tvNombreUser.text = it.name
                     binding.tvEdad.text = fechaFormateada
-                    binding.tvRolUser.text = "Jugador"
+                    binding.tvPerfilTitle.text = "Perfil Jugador"
                     binding.tvNacionalidad.text = it.nationality
                     binding.tvAliasDato.text = it.alias
                 }
             }
         }
+
+        binding.tvEmail.text = auth.currentUser!!.email
     }
 
-    private fun setupCerrarSesion(){
-        binding.btCerrarSesionPantallaEquipo.setOnClickListener{
-            auth.signOut()
-            this.requireActivity().finish()
-            this.requireActivity().startActivity(Intent(requireContext(),LoginActivity::class.java))
+    private fun toOpcionesApp() {
+        binding.ivOpciones.setOnClickListener {
+            val action = PerfilFragmentDirections.toOpciones()
+            findNavController().navigate(action)
         }
     }
 
-    private fun setupEliminarUsuario() {
-        binding.btEliminarCuentaPantallaEquipo.setOnClickListener {
-            AlertDialog.Builder(activity as Context)
-                .setTitle(R.string.eliminacion_de_cuenta)
-                .setMessage(R.string.eliminacion_cuenta_mensaje)
-                // Acción si pulsa si
-                .setPositiveButton(getString(R.string.si)) { v, _ ->
-                    //UID del usuario a eliminar
-                    val user = auth.currentUser!!.uid
-                    this.teamManagerViewModel.deletePlayerByUser(user)
-                    this.teamManagerViewModel.deleteTrainerByUser(user)
 
-                    auth.currentUser!!.delete().addOnCompleteListener {
-                        if (it.isSuccessful) {
 
-                            Log.i("Usuario Eliminado", "Usuario Eliminado")
-                            this.requireActivity().finish()
-                            this.requireActivity()
-                                .startActivity(Intent(requireContext(), LoginActivity::class.java))
-                        }
-                    }
-                    v.dismiss()
-                }
-                // Accion si pulsa no
-                .setNegativeButton(getString(R.string.no)) { v, _ -> v.dismiss() }
-                .setCancelable(false)
-                .create()
-                .show()
-        }
-    }
-
-    private fun setUpEditar(){
+    private fun toEditar(){
         binding.ivPerfilEditar.setOnClickListener {
-
+            findNavController().navigate(PerfilFragmentDirections.toEditarPerfil())
         }
     }
 
@@ -126,9 +97,9 @@ class PerfilFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        this.setupCerrarSesion()
-        this.setupEliminarUsuario()
         this.setupDatosJugadorOEntrenador()
+        this.toEditar()
+        this.toOpcionesApp()
     }
 
     override fun onCreateView(

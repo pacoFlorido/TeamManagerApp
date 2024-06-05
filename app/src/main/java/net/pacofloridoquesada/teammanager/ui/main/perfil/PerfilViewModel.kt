@@ -66,4 +66,35 @@ class PerfilViewModel : ViewModel() {
             Log.e("Exception: ", "${e.message}")
         }
     }
+
+    fun updateTrainer(trainer: Trainer){
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.updateTrainer(trainer)
+                if (response.isSuccessful) {
+                    Log.i("Response", "Jugador actualizado: ${response.body()}")
+                    _trainer.postValue(response.body())
+                } else {
+                    Log.e("Error", "Error obteniendo jugador actualizado, ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Exception: ", "${e.message}")
+        }
+    }
+
+    fun delteUserFromTeam(user: String){
+        try {
+            viewModelScope.launch(Dispatchers.IO) {
+                val response = NetworkService.teamManagerService.deleteUserFromTeam(user)
+                if (response.isSuccessful) {
+                    Log.i("Response", "Usuario abandono el equipo: ${response.body()}")
+                } else {
+                    Log.e("Error", "Error obteniendo equipo actualizado, ${response.errorBody()}")
+                }
+            }
+        } catch (e: Exception) {
+            Log.e("Exception: ", "${e.message}")
+        }
+    }
 }

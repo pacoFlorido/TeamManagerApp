@@ -47,7 +47,14 @@
         android:id="@+id/navigation_perfil"
         android:name="net.pacofloridoquesada.teammanager.ui.main.perfil.PerfilFragment"
         android:label="fragment_perfil"
-        tools:layout="@layout/fragment_perfil" />
+        tools:layout="@layout/fragment_perfil" >
+        <action
+            android:id="@+id/toEditarPerfil"
+            app:destination="@id/editarPerfilFragment" />
+        <action
+            android:id="@+id/toOpciones"
+            app:destination="@id/opcionesFragment" />
+    </fragment>
     <fragment
         android:id="@+id/crearEventoFragment"
         android:name="net.pacofloridoquesada.teammanager.ui.main.eventos.CrearEventoFragment"
@@ -101,4 +108,14 @@
             android:name="userTrainer"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/editarPerfilFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.perfil.EditarPerfilFragment"
+        android:label="fragment_editar_perfil"
+        tools:layout="@layout/fragment_editar_perfil" />
+    <fragment
+        android:id="@+id/opcionesFragment"
+        android:name="net.pacofloridoquesada.teammanager.ui.main.perfil.OpcionesFragment"
+        android:label="fragment_opciones"
+        tools:layout="@layout/fragment_opciones" />
 </navigation>

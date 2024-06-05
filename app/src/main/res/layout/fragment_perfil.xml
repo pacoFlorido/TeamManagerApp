@@ -9,43 +9,6 @@
     android:isScrollContainer="true"
     tools:context=".ui.main.perfil.PerfilFragment">
 
-    <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <Button
-            android:id="@+id/btCerrarSesionPantallaEquipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_simple_button"
-            android:text="@string/cerrar_sesi_n"
-            android:textAllCaps="false"
-            android:textSize="18sp" />
-
-        <Button
-            android:id="@+id/btEliminarCuentaPantallaEquipo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_weight="1"
-            android:background="@drawable/bg_simple_button"
-            android:text="@string/eliminar_cuenta"
-            android:textAllCaps="false"
-            android:textSize="18sp" />
-
-    </LinearLayout>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cvPerfilImage"
         android:layout_width="200dp"
@@ -148,9 +111,9 @@
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/textView25"
+        app:layout_constraintEnd_toStartOf="@+id/textView23"
         app:layout_constraintStart_toStartOf="@+id/textView21"
-        app:layout_constraintTop_toBottomOf="@+id/tvNombreUser" />
+        app:layout_constraintTop_toBottomOf="@+id/tvAliasDato" />
 
     <TextView
         android:id="@+id/tvEdad"
@@ -169,7 +132,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
         android:text="@string/equipo"
         android:textAlignment="center"
@@ -177,22 +140,20 @@
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvNacionalidad" />
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail" />
 
     <TextView
         android:id="@+id/tvEquipo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textAlignment="center"
         android:textColor="@color/azul_principal"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textView21"
         app:layout_constraintStart_toStartOf="@+id/textView21"
         app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
@@ -201,82 +162,78 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="32dp"
         android:text="@string/nacionalidad"
         android:textColor="@color/azul_principal"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/tvAlias"
-        app:layout_constraintStart_toStartOf="@+id/textView19"
-        app:layout_constraintTop_toBottomOf="@+id/tvEdad" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView19"
+        app:layout_constraintTop_toBottomOf="@+id/tvAliasDato" />
 
     <TextView
         android:id="@+id/tvNacionalidad"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="@color/azul_principal"
         android:textSize="16sp"
-        app:layout_constraintEnd_toStartOf="@+id/tvAliasDato"
+        app:layout_constraintEnd_toEndOf="@+id/textView23"
         app:layout_constraintStart_toStartOf="@+id/textView23"
         app:layout_constraintTop_toBottomOf="@+id/textView23"
         tools:text="España" />
-
-    <TextView
-        android:id="@+id/textView25"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:text="@string/rol"
-        android:textColor="@color/azul_principal"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19" />
-
-    <TextView
-        android:id="@+id/tvRolUser"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="32dp"
-        android:ellipsize="end"
-        android:maxLines="1"
-        android:textColor="@color/azul_principal"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/textView25"
-        app:layout_constraintTop_toBottomOf="@+id/textView25"
-        tools:text="Jugador" />
-
-    <TextView
-        android:id="@+id/tvAlias"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="32dp"
-        android:text="@string/alias"
-        android:textColor="@color/azul_principal"
-        android:textSize="18sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tvRolUser"
-        app:layout_constraintTop_toBottomOf="@+id/tvEdad" />
 
     <TextView
         android:id="@+id/tvAliasDato"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:textAlignment="center"
         android:textColor="@color/azul_principal"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/tvRolUser"
-        app:layout_constraintStart_toStartOf="@+id/tvAlias"
-        app:layout_constraintTop_toBottomOf="@+id/tvAlias" />
+        app:layout_constraintEnd_toEndOf="@+id/tvNombreUser"
+        app:layout_constraintStart_toStartOf="@+id/tvNombreUser"
+        app:layout_constraintTop_toBottomOf="@+id/tvNombreUser"
+        tools:text="Paquirrin" />
+
+    <ImageView
+        android:id="@+id/ivOpciones"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/cog"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cvPerfilHeader" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/email"
+        android:textColor="@color/azul_principal"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEdad" />
+
+    <TextView
+        android:id="@+id/tvEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textColor="@color/azul_principal"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/textView29"
+        app:layout_constraintStart_toStartOf="@+id/textView29"
+        app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
