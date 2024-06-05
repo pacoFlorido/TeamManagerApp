@@ -279,5 +279,5 @@
     <string name="selecciona_una_im_gen_para_tu_perfil">Selecciona una imágen para tu perfil</string>
     <string name="opciones">Opciones</string>
     <string name="abandonar_equipo">Abandonar Equipo</string>
-    <string name="son_necesarios_los_permisos_de_lectura_de_ficheros_para_poder_a_adir_una_im_gen_estas_seguro_de_rechazarlos">Son necesarios los permisos de lectura de ficheros para poder añadir una imágen. ¿Estas seguro de rechazarlos?</string>
+    <string name="son_necesarios_los_permisos_de_lectura_de_ficheros_para_poder_a_adir_una_im_gen_estas_seguro_de_rechazarlos">Son necesarios los permisos de lectura de ficheros para poder añadir una imágen. ¿Quieres activarlos?</string>
 </resources>

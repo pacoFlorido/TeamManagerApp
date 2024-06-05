@@ -33,7 +33,6 @@ import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentEditarPerfilBinding
 import net.pacofloridoquesada.teammanager.utils.ImageUtils
 import java.io.File
-import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
@@ -97,15 +96,18 @@ class EditarPerfilFragment : Fragment() {
     ) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             //uri de la foto elegida
-            val uri = result.data?.data
-            val uriCopia = saveBitmapImage(loadFromUri(uri)!!)
-            //mostramos la foto
-            binding.ivImagenPerfil.setImageURI(uriCopia)
-            // Guardamos la uri para subirla cuando le demos a guardar
-            uriFoto = uriCopia?.toString() ?: ""
-            val stream = FileInputStream(File(ImageUtils.getRealPathFromURI(result.data?.data!!, requireContext())))
 
-            val response = storageRef.child("image").putStream(stream)
+            val uri = result.data?.data
+            val ruta = ImageUtils.getRealPathFromURI(uri!!, requireContext())
+            Log.i("Foto:", ruta)
+            val uriCopia = saveBitmapImage(loadFromUri(uri)!!)
+            binding.ivImagenPerfil.setImageURI(uriCopia)
+
+//            val stream = FileInputStream(File(ImageUtils.getRealPathFromURI(uriCopia!!, requireContext())))
+            // Guardamos la uri para subirla cuando le demos a guardar
+            uriFoto = uriCopia.toString()
+
+//            val response = storageRef.child("image").putStream(stream)
             Log.i("Foto", "${uriCopia}")
         }
     }
@@ -120,9 +122,9 @@ class EditarPerfilFragment : Fragment() {
             // Guardamos la uri para subirla cuando le demos a guardar
             uriFoto = uriCopia?.toString() ?: ""
 
-            val stream = FileInputStream(File(uriFoto))
+//            val stream = FileInputStream(File(uriFoto))
 
-            val response = storageRef.child("image").putStream(stream)
+//            val response = storageRef.child("image").putStream(stream)
 
 
 
@@ -160,11 +162,14 @@ class EditarPerfilFragment : Fragment() {
             if (it != null) {
                 binding.etNombreCompletoEditar.setText(it.name)
 
-                val imageRef = storageRef.child("image").child(it.image!!)
-                Glide.with(binding.cvEditPerfil.context)
-                    .load(imageRef)
-                    .error(R.drawable.ic_logo_app)
-                    .into(binding.ivImagenPerfil)
+                if (it.image != null) {
+                    val imageRef = storageRef.child("image").child(it.image!!)
+
+                    Glide.with(binding.cvEditPerfil.context)
+                        .load(imageRef)
+                        .error(R.drawable.ic_logo_app)
+                        .into(binding.ivImagenPerfil)
+                }
 
                 binding.tvAliasEdicion.visibility = View.INVISIBLE
                 binding.etAliasEdicion.visibility = View.INVISIBLE
@@ -181,6 +186,14 @@ class EditarPerfilFragment : Fragment() {
                 if (it != null) {
                     binding.etNombreCompletoEditar.setText(it.name)
                     binding.etAliasEdicion.setText(it.alias)
+                    if (it.image != null) {
+                        val imageRef = storageRef.child("image").child(it.image!!)
+
+                        Glide.with(binding.cvEditPerfil.context)
+                            .load(imageRef)
+                            .error(R.drawable.ic_logo_app)
+                            .into(binding.ivImagenPerfil)
+                    }
                 }
             }
 
@@ -202,11 +215,6 @@ class EditarPerfilFragment : Fragment() {
                     if (!binding.etNombreCompletoEditar.text.isEmpty()) {
                         player.name = binding.etNombreCompletoEditar.text.toString()
                         player.alias = binding.etAliasEdicion.text.toString()
-                        val imageRef = storageRef.child("image").child(player.image!!)
-                        Glide.with(binding.cvEditPerfil.context)
-                            .load(imageRef)
-                            .error(R.drawable.ic_logo_app)
-                            .into(binding.ivImagenPerfil)
 
                         perfilViewModel.updatePlayerRecord(player)
                         val ruta = ImageUtils.getRealPathFromURI(uriuriFoto!!, requireContext())
@@ -266,7 +274,7 @@ class EditarPerfilFragment : Fragment() {
         _binding = FragmentEditarPerfilBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = FirebaseAuth.getInstance()
-        storageRef = FirebaseStorage.getInstance().getReference()
+        storageRef = FirebaseStorage.getInstance().reference
         return root
     }
 

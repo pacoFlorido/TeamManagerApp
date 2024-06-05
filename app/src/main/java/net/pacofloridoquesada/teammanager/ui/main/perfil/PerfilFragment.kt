@@ -11,7 +11,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentPerfilBinding
 import net.pacofloridoquesada.teammanager.ui.login.LoginActivity
@@ -27,6 +30,7 @@ class PerfilFragment : Fragment() {
     private val perfilViewModel: PerfilViewModel by activityViewModels()
     private val teamManagerViewModel: TeamManagerViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
+    private lateinit var storageRef: StorageReference
 
     private fun setupDatosJugadorOEntrenador(){
         teamManagerViewModel.getTeamByUser(auth.currentUser!!.uid)
@@ -50,6 +54,15 @@ class PerfilFragment : Fragment() {
                 binding.tvEdad.text = fechaFormateada
                 binding.tvPerfilTitle.text = "Perfil Entrenador"
                 binding.tvNacionalidad.text = it.nationality
+                if (it.image != null) {
+                    val imageRef = storageRef.child("image").child(it.image!!)
+
+                    Glide.with(binding.cvPerfil.context)
+                        .load(imageRef)
+                        .error(R.drawable.ic_logo_app)
+                        .into(binding.ivPerfil)
+                }
+
 
                 binding.tvAliasDato.visibility = View.INVISIBLE
                 jugador = false
@@ -71,6 +84,14 @@ class PerfilFragment : Fragment() {
                     binding.tvPerfilTitle.text = "Perfil Jugador"
                     binding.tvNacionalidad.text = it.nationality
                     binding.tvAliasDato.text = it.alias
+                    if (it.image != null) {
+                        val imageRef = storageRef.child("image").child(it.image!!)
+
+                        Glide.with(binding.cvPerfil.context)
+                            .load(imageRef)
+                            .error(R.drawable.ic_logo_app)
+                            .into(binding.ivPerfil)
+                    }
                 }
             }
         }
@@ -111,6 +132,7 @@ class PerfilFragment : Fragment() {
         _binding = FragmentPerfilBinding.inflate(inflater, container, false)
         val root: View = binding.root
         auth = FirebaseAuth.getInstance()
+        storageRef = FirebaseStorage.getInstance().reference
         return root
     }
 

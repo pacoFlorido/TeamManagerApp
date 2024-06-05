@@ -3,12 +3,17 @@ package net.pacofloridoquesada.teammanager.adapters
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.StorageReference
+import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.ItemJugadorConGolesBinding
 import net.pacofloridoquesada.teammanager.model.Player
 
 class JugadoresHomeAdapter : RecyclerView.Adapter<JugadoresHomeAdapter.JugadoresHomeViewHolder>() {
 
     var listaPlayer: List<Player>? = null
+    var storageRef: StorageReference = FirebaseStorage.getInstance().reference
 
     fun setLista(lista: List<Player>) {
         listaPlayer = lista
@@ -34,6 +39,14 @@ class JugadoresHomeAdapter : RecyclerView.Adapter<JugadoresHomeAdapter.Jugadores
             with(listaPlayer!!.get(position)) {
                 binding.tvNombreJugador.text = name
                 binding.tvGoles.text = playerReport?.goals.toString()
+                if (image != null) {
+                    val imageRef = storageRef.child("image").child(image!!)
+
+                    Glide.with(binding.cvItemJugadorGoles.context)
+                        .load(imageRef)
+                        .error(R.drawable.ic_logo_app)
+                        .into(binding.ivJugador)
+                }
             }
         }
     }
