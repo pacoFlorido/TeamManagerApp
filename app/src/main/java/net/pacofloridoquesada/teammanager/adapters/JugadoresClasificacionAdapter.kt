@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.ItemJugadorEstadisticasBinding
 import net.pacofloridoquesada.teammanager.model.Player
@@ -49,12 +51,13 @@ class JugadoresClasificacionAdapter : RecyclerView.Adapter<JugadoresClasificacio
                 binding.tvAmarillasEstadisticas.text = playerReport.yellowCards.toString()
                 binding.tvRojasEstadisticas.text = playerReport.redCards.toString()
                 if (image != null) {
-                    val imageRef = storageRef.child("image").child(image!!)
-
-                    Glide.with(binding.cvItemJugadorEstats.context)
-                        .load(imageRef)
-                        .error(R.drawable.ic_logo_app)
-                        .into(binding.ivJugador)
+                    Firebase.storage.reference.child("image").child(image!!)
+                        .downloadUrl.addOnSuccessListener {
+                            Glide.with(binding.cvItemJugadorEstats.context)
+                                .load(it)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivJugador)
+                        }
                 }
             }
         }

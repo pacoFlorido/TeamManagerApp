@@ -8,7 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentClasificacionBinding
 import net.pacofloridoquesada.teammanager.databinding.FragmentDetalleJugadorBinding
@@ -73,6 +76,15 @@ class DetalleJugadorFragment : Fragment() {
                 binding.tvPartidosEstats.text = it.playerReport.matches.toString()
                 binding.tvAmarillasEstats.text = it.playerReport.yellowCards.toString()
                 binding.tvRojasEstats.text = it.playerReport.redCards.toString()
+                if (it.image != null) {
+                    Firebase.storage.reference.child("image").child(it.image!!)
+                        .downloadUrl.addOnSuccessListener {uri ->
+                            Glide.with(binding.cvPerfil.context)
+                                .load(uri)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivPerfil)
+                        }
+                }
             }
         }
     }

@@ -80,6 +80,9 @@ interface TeamManagerService {
     @PUT("trainer/update")
     suspend fun updateTrainer(@Body trainer: Trainer) : Response<Trainer>
 
+    @PUT("team/update")
+    suspend fun updateTeam(@Body team: Team) : Response<Team>
+
     @PATCH("team/deleteUserFromTeam/{user}")
     suspend fun deleteUserFromTeam(@Path("user") user: String) : Response<Team>
 }

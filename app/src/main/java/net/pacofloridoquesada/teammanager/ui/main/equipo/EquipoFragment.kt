@@ -10,7 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.adapters.EntrenadoresAdapter
 import net.pacofloridoquesada.teammanager.adapters.EventosAdapter
@@ -87,6 +90,16 @@ class EquipoFragment : Fragment() {
         teamManagerViewModel.team.observe(viewLifecycleOwner) { team ->
             if (team != null) {
                 binding.tvNombreEquipo.text = team.name
+                if (team.image != null) {
+                    Firebase.storage.reference.child("image").child(team.image!!)
+                        .downloadUrl.addOnSuccessListener {uri ->
+                            Glide.with(binding.cvEquipoDetalles.context)
+                                .load(uri)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivEquipo)
+                        }
+                }
+
                 equipoViewModel.getPlayersByIdTeam(team.id!!)
                 equipoViewModel.getTrainersByIdTeam(team.id)
             }

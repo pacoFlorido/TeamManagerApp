@@ -9,6 +9,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.firebase.auth.FirebaseAuth
+import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.adapters.EventosAdapter
 import net.pacofloridoquesada.teammanager.databinding.FragmentEventosBinding
 import net.pacofloridoquesada.teammanager.model.Event
@@ -77,6 +78,9 @@ class EventosFragment : Fragment() {
         eventosViewModel.eventos.observe(viewLifecycleOwner) { eventos ->
             if (eventos != null) {
                 eventosAdapter.setLista(eventos)
+                binding.tvProximosEventos.text = getString(R.string.no_hay_pr_ximos_eventos)
+            } else {
+                binding.tvProximosEventos.visibility = R.string.pr_ximos_eventos
             }
 
             with(binding.rvEventos) {

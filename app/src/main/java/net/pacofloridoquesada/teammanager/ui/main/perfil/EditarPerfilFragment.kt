@@ -26,13 +26,16 @@ import androidx.core.net.toUri
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentEditarPerfilBinding
 import net.pacofloridoquesada.teammanager.utils.ImageUtils
 import java.io.File
+import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
@@ -45,8 +48,7 @@ class EditarPerfilFragment : Fragment() {
     private val binding get() = _binding!!
     private val perfilViewModel: PerfilViewModel by activityViewModels()
     private lateinit var auth: FirebaseAuth
-    lateinit var uriFoto: String
-    private var uriuriFoto: Uri? = null
+    private var uriFoto: String? = null
     private lateinit var storageRef: StorageReference
 
     private val PERMISOS_REQUERIDOS = when {
@@ -98,17 +100,17 @@ class EditarPerfilFragment : Fragment() {
             //uri de la foto elegida
 
             val uri = result.data?.data
-            val ruta = ImageUtils.getRealPathFromURI(uri!!, requireContext())
-            Log.i("Foto:", ruta)
+
             val uriCopia = saveBitmapImage(loadFromUri(uri)!!)
             binding.ivImagenPerfil.setImageURI(uriCopia)
 
-//            val stream = FileInputStream(File(ImageUtils.getRealPathFromURI(uriCopia!!, requireContext())))
-            // Guardamos la uri para subirla cuando le demos a guardar
-            uriFoto = uriCopia.toString()
+            val uriii = ImageUtils.getRealPathFromURI(uriCopia!!, requireContext()).split("/")
+            uriFoto = uriii[uriii.size-1]
 
-//            val response = storageRef.child("image").putStream(stream)
-            Log.i("Foto", "${uriCopia}")
+            storageRef.child("image").child(uriFoto!!).putFile(uriCopia)
+
+
+            Log.i("URIGUARDAR", uriFoto!!)
         }
     }
 
@@ -119,17 +121,13 @@ class EditarPerfilFragment : Fragment() {
         if (uri != null) {
             val uriCopia = saveBitmapImage(loadFromUri(uri)!!)
             binding.ivImagenPerfil.setImageURI(uriCopia)
-            // Guardamos la uri para subirla cuando le demos a guardar
-            uriFoto = uriCopia?.toString() ?: ""
 
-//            val stream = FileInputStream(File(uriFoto))
+            val uriii = ImageUtils.getRealPathFromURI(uriCopia!!, requireContext()).split("/")
+            uriFoto = uriii[uriii.size-1]
 
-//            val response = storageRef.child("image").putStream(stream)
+            storageRef.child("image").child(uriFoto!!).putFile(uriCopia)
 
-
-
-
-            Log.i("Foto", "${uriCopia}")
+            Log.i("URIGUARDAR", uriFoto!!)
         }
     }
 
@@ -163,12 +161,13 @@ class EditarPerfilFragment : Fragment() {
                 binding.etNombreCompletoEditar.setText(it.name)
 
                 if (it.image != null) {
-                    val imageRef = storageRef.child("image").child(it.image!!)
-
-                    Glide.with(binding.cvEditPerfil.context)
-                        .load(imageRef)
-                        .error(R.drawable.ic_logo_app)
-                        .into(binding.ivImagenPerfil)
+                    Firebase.storage.reference.child("image").child(it.image!!)
+                        .downloadUrl.addOnSuccessListener {uri ->
+                            Glide.with(binding.cvEditPerfil.context)
+                                .load(uri)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivImagenPerfil)
+                        }
                 }
 
                 binding.tvAliasEdicion.visibility = View.INVISIBLE
@@ -187,12 +186,13 @@ class EditarPerfilFragment : Fragment() {
                     binding.etNombreCompletoEditar.setText(it.name)
                     binding.etAliasEdicion.setText(it.alias)
                     if (it.image != null) {
-                        val imageRef = storageRef.child("image").child(it.image!!)
-
-                        Glide.with(binding.cvEditPerfil.context)
-                            .load(imageRef)
-                            .error(R.drawable.ic_logo_app)
-                            .into(binding.ivImagenPerfil)
+                        Firebase.storage.reference.child("image").child(it.image!!)
+                            .downloadUrl.addOnSuccessListener {uri ->
+                                Glide.with(binding.cvEditPerfil.context)
+                                    .load(uri)
+                                    .error(R.drawable.ic_logo_app)
+                                    .into(binding.ivImagenPerfil)
+                            }
                     }
                 }
             }
@@ -215,11 +215,11 @@ class EditarPerfilFragment : Fragment() {
                     if (!binding.etNombreCompletoEditar.text.isEmpty()) {
                         player.name = binding.etNombreCompletoEditar.text.toString()
                         player.alias = binding.etAliasEdicion.text.toString()
+                        if (uriFoto != null) {
+                            player.image = uriFoto
+                        }
 
                         perfilViewModel.updatePlayerRecord(player)
-                        val ruta = ImageUtils.getRealPathFromURI(uriuriFoto!!, requireContext())
-
-                        Log.i("Foto:", ruta)
 
                         findNavController().popBackStack()
                     } else {
@@ -241,11 +241,10 @@ class EditarPerfilFragment : Fragment() {
 
                     if (!binding.etNombreCompletoEditar.text.isEmpty()) {
                         trainer.name = binding.etNombreCompletoEditar.text.toString()
+                        if (uriFoto != null) {
+                            trainer.image = uriFoto
+                        }
                         perfilViewModel.updateTrainer(trainer)
-
-                        val ruta = ImageUtils.getRealPathFromURI(uriuriFoto!!, requireContext())
-
-                        Log.i("Foto:", ruta)
 
                         findNavController().popBackStack()
                     } else {

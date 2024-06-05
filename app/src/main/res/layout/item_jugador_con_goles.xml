@@ -33,6 +33,7 @@
                     android:id="@+id/ivJugador"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/ic_teammanager_launcher" />
             </androidx.cardview.widget.CardView>
 

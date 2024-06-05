@@ -6,5 +6,5 @@ data class Team(
     val id: Int?,
     val name: String,
     val code: String?,
-    val image: String?
+    var image: String?
 )

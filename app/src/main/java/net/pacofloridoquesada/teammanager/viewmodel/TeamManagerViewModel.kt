@@ -129,10 +129,10 @@ class TeamManagerViewModel : ViewModel() {
         }
     }
 
-    fun addUserToTeam(team: Team?, user: String) {
+    fun updateTeam(team: Team) {
         viewModelScope.launch(Dispatchers.IO) {
-            val response = NetworkService.teamManagerService.addUserToTeam(team!!, user)
-            Log.i("Response: ", "hola " + response.errorBody().toString())
+            val response = NetworkService.teamManagerService.updateTeam(team)
+            Log.i("Response: ", response.toString())
         }
     }
 }

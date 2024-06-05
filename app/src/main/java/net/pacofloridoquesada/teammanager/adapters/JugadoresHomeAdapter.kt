@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
+import com.google.firebase.storage.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.ItemJugadorConGolesBinding
 import net.pacofloridoquesada.teammanager.model.Player
@@ -39,14 +41,17 @@ class JugadoresHomeAdapter : RecyclerView.Adapter<JugadoresHomeAdapter.Jugadores
             with(listaPlayer!!.get(position)) {
                 binding.tvNombreJugador.text = name
                 binding.tvGoles.text = playerReport?.goals.toString()
-                if (image != null) {
-                    val imageRef = storageRef.child("image").child(image!!)
 
-                    Glide.with(binding.cvItemJugadorGoles.context)
-                        .load(imageRef)
-                        .error(R.drawable.ic_logo_app)
-                        .into(binding.ivJugador)
+                if (image != null) {
+                    Firebase.storage.reference.child("image").child(image!!)
+                        .downloadUrl.addOnSuccessListener {
+                            Glide.with(binding.cvItemJugadorGoles.context)
+                                .load(it)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivJugador)
+                        }
                 }
+
             }
         }
     }
