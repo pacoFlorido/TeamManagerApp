@@ -35,6 +35,7 @@ class CrearEquipoFragment : Fragment() {
                         LocalDate.now().toString(),
                         null,
                         binding.etNombreEquipo.text.toString(),
+                        null,
                         null
                     ),
                     auth.currentUser!!.uid

@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import net.pacofloridoquesada.teammanager.model.Player
 import net.pacofloridoquesada.teammanager.model.Trainer
 import net.pacofloridoquesada.teammanager.network.NetworkService
+import okhttp3.MultipartBody
 
 class PerfilViewModel : ViewModel() {
 

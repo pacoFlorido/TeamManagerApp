@@ -5,5 +5,6 @@ data class Trainer(
     val id: Int?,
     var name: String,
     val nationality: String,
-    val user: String
+    val user: String,
+    var image: String?
 )

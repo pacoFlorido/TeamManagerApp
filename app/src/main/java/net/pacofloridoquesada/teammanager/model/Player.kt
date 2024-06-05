@@ -6,5 +6,6 @@ data class Player(
     var name: String,
     val nationality: String,
     val playerReport: PlayerReport?,
-    val user: String
+    val user: String,
+    var image: String?
 )

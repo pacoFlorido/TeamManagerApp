@@ -126,7 +126,8 @@ class UserCreationFragment : Fragment() {
                             binding.etNombreCompleto.text.toString(),
                             binding.spPaises.selectedItem.toString(),
                             null,
-                            auth.currentUser?.uid.toString()
+                            auth.currentUser?.uid.toString(),
+                            null
                         )
                     )
                     this.requireActivity().finish()
@@ -143,7 +144,8 @@ class UserCreationFragment : Fragment() {
                             null,
                             binding.etNombreCompleto.text.toString(),
                             binding.spPaises.selectedItem.toString(),
-                            auth.currentUser?.uid.toString()
+                            auth.currentUser?.uid.toString(),
+                            null
                         )
                     )
                     this.requireActivity().finish()

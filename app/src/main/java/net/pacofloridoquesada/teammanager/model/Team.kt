@@ -5,5 +5,6 @@ data class Team(
     val creationDate: String,
     val id: Int?,
     val name: String,
-    val code: String?
+    val code: String?,
+    val image: String?
 )
