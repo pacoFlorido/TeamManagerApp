@@ -9,7 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.google.firebase.Firebase
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.storage.storage
 import net.pacofloridoquesada.teammanager.R
 import net.pacofloridoquesada.teammanager.databinding.FragmentActualizarJugadorBinding
 import net.pacofloridoquesada.teammanager.databinding.FragmentDetalleJugadorBinding
@@ -57,6 +60,16 @@ class ActualizarJugadorFragment : Fragment() {
                 binding.etPartidos.setText(player.playerReport.matches.toString())
                 binding.etAmarillas.setText(player.playerReport.yellowCards.toString())
                 binding.etRojas.setText(player.playerReport.redCards.toString())
+
+                if (player.image != null) {
+                    Firebase.storage.reference.child("image").child(player.image!!)
+                        .downloadUrl.addOnSuccessListener {uri ->
+                            Glide.with(binding.cvPerfil.context)
+                                .load(uri)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivPerfil)
+                        }
+                }
             }
         }
 
