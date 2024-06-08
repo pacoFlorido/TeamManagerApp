@@ -58,16 +58,18 @@ class OpcionesFragment : Fragment() {
                 .setPositiveButton(getString(R.string.si)) { v, _ ->
                     //UID del usuario a eliminar
                     val user = auth.currentUser!!.uid
-                    this.teamManagerViewModel.deletePlayerByUser(user)
-                    this.teamManagerViewModel.deleteTrainerByUser(user)
 
                     auth.currentUser!!.delete().addOnCompleteListener {
                         if (it.isSuccessful) {
 
+                            this.teamManagerViewModel.deletePlayerByUser(user)
+                            this.teamManagerViewModel.deleteTrainerByUser(user)
                             Log.i("Usuario Eliminado", "Usuario Eliminado")
                             this.requireActivity().finish()
                             this.requireActivity()
                                 .startActivity(Intent(requireContext(), LoginActivity::class.java))
+                        } else {
+
                         }
                     }
                     v.dismiss()
