@@ -57,12 +57,13 @@ class PerfilFragment : Fragment() {
                 binding.tvPerfilTitle.text = "Perfil Entrenador"
                 binding.tvNacionalidad.text = it.nationality
                 if (it.image != null) {
-                    val imageRef = storageRef.child("image").child(it.image!!)
-
-                    Glide.with(binding.cvPerfil.context)
-                        .load(imageRef)
-                        .error(R.drawable.ic_logo_app)
-                        .into(binding.ivPerfil)
+                    Firebase.storage.reference.child("image").child(it.image!!)
+                        .downloadUrl.addOnSuccessListener {uri ->
+                            Glide.with(binding.cvPerfil.context)
+                                .load(uri)
+                                .error(R.drawable.ic_logo_app)
+                                .into(binding.ivPerfil)
+                        }
                 }
 
 
